@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cam_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
+
+        <android.opengl.GLSurfaceView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/batteryLevelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="-- %"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/spotMeterIcon"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:alpha="0.9"
+                android:background="@drawable/ic_location_searching_black_24dp" />
+
+            <TextView
+                android:id="@+id/spotMeterValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:layout_marginLeft="200dp"
+                android:text=""/>
+
+
+            <ImageView
+                android:id="@+id/icon1"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:alpha="0.9"
+                android:background="@drawable/ic_location_searching_black_24dp" />
+            <ImageView
+                android:id="@+id/icon2"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:alpha="0.9"
+                android:background="@drawable/ic_location_searching_black_24dp" />
+            <ImageView
+                android:id="@+id/icon3"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:alpha="0.9"
+                android:background="@drawable/ic_location_searching_black_24dp" />
+
+
+
+
+            <Button
+                android:id="@+id/btnCaptureThermo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/cam_button" />
+
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

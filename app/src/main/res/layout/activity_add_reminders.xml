@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRemindersActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorSecondaryDark">
+        <!-- Reminders List -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal">
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Envoyez-moi un rappel si je n'ai pas consigné dans mon journal"
+                android:textColor="@color/colorDark"
+                android:textSize="14dp"
+                />
+                <Spinner
+                    android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/darkGray"
+                    android:spinnerMode="dropdown"/>
+
+
+
+        </LinearLayout>
+
+</LinearLayout>
+        <!--Time Picker -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temps"
+                    android:textColor="@color/colorDark"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/selecttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09:00"
+                    android:textSize="16dp"
+                    android:onClick="onClickTime"
+                    android:clickable="true"
+                    android:textColor="@color/darkGray"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--Notes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vous recrevez un rappel si, à l'heure indiquée ci-dessus, vous n'avez toujours pas consigné dans le journal les éléments du groupe sélectionné"
+                    android:textColor="@color/colorDark"
+                    android:textSize="14dp"
+                    />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

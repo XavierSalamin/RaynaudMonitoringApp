@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/crisis_title_textview"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="09:30"
+            android:textColor="@color/colorDark"
+            android:textSize="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/crisis_subtitle_textview"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:text="description"
+            android:textSize="14dp"
+            android:textColor="@color/darkGray"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/photo_icon"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_photo_black_24dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/notes_icon"
+            android:background="@drawable/ic_description_black_24dp"/>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

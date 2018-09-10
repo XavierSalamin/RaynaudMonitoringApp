@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pictures_preview_title" type="id">Aperçu de l'image</item>
+    <item name="settings_title" type="id">Paramètres</item>
+</resources>

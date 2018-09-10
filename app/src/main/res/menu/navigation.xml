@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_pictures"
+        android:icon="@drawable/ic_photo_black_24dp"
+        android:title="Photos" />
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/ic_description_black_24dp"
+        android:title="Notes" />
+
+
+
+
+</menu>

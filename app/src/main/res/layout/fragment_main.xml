@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
+
+        <include layout="@layout/datepicker"></include>
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true"
+            android:id="@+id/crisis_layout"
+            android:layout_marginLeft="@dimen/card_margin_horizontal"
+            android:layout_marginRight="@dimen/card_margin_horizontal"
+            card_view:cardElevation="4dp"
+            android:layout_marginTop="24dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Crise"
+                        android:textColor="@color/colorDark"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--List View -->
+                <ListView
+                    android:background="@color/colorListView"
+                    android:layout_width="match_parent"
+
+                    android:id="@+id/crisis_listview"
+                    android:layout_height="wrap_content">
+                </ListView>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:id="@+id/add_crisis_linear_layout"
+                    android:background="@color/colorSecondaryDark"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                        <Button
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/button_add_crisis"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="false"
+                        android:background="@drawable/ic_add_black_24dp" />
+
+                        <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Ajouter une crise"
+                        android:clickable="false"
+                        android:textColor="@color/colorTextGray"
+                        android:textSize="14dp" />
+                    </LinearLayout>
+
+            </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--Treatment-->
+        <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        android:layout_marginLeft="@dimen/card_margin_horizontal"
+
+        android:id="@+id/treatment_layout"
+        android:layout_marginRight="@dimen/card_margin_horizontal"
+        card_view:cardElevation="4dp"
+        android:layout_marginTop="24dp"
+        card_view:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--Title Treatment-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Traitement"
+                    android:textColor="@color/colorDark"
+                    android:textSize="16dp" />
+            </LinearLayout>
+            <!--End Title Treatment-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--List View -->
+                <ListView
+                    android:background="@color/colorListView"
+                    android:layout_width="match_parent"
+
+                    android:id="@+id/treatment_listview"
+                    android:layout_height="wrap_content">
+                </ListView>
+                <!--Add Treatment Clickable Layout -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:id="@+id/add_treatment_linear_layout"
+                    android:background="@color/colorSecondaryDark"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/button_add_treatment"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="false"
+                        android:background="@drawable/ic_add_black_24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="false"
+                        android:text="Ajouter un traitement"
+                        android:textColor="@color/colorTextGray"
+                        android:textSize="14dp" />
+                </LinearLayout>
+                <!-- End Add Treatment Clickable Layout -->
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true"
+            android:layout_marginLeft="@dimen/card_margin_horizontal"
+            android:layout_marginRight="@dimen/card_margin_horizontal"
+            card_view:cardElevation="4dp"
+            android:layout_marginTop="24dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Commentaires"
+                        android:textColor="@color/colorTextEdit"
+                        android:textSize="12dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/plain_text_input_commentary"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="15dp"
+
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:inputType="text"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <!-- RCS -->
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true"
+            android:layout_marginLeft="@dimen/card_margin_horizontal"
+            android:layout_marginRight="@dimen/card_margin_horizontal"
+            card_view:cardElevation="4dp"
+            android:layout_marginTop="24dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="RCS"
+                        android:id="@+id/rcs_textview"
+                        android:textColor="@color/colorDark"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/add_rcs_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="@color/colorSecondaryDark"
+                    android:clickable="true"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:layout_marginRight="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="false"
+
+                        android:text="A quel degré estimez-vous aujourd'hui la gêne occasionnée "
+                        android:textColor="@color/colorTextGray"
+                        android:textSize="12dp" />
+
+                    <SeekBar
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/seekBar_rcs"
+                        android:thumbTint="@color/colorPrimary"
+                        android:progressTint="@color/colorPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="10"
+                        android:min="0"
+                        android:tickMark="@drawable/tickmark"
+                        android:progress="0" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>

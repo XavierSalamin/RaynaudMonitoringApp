@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- Date Picker Components -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:id="@+id/date_left_button"
+            android:clickable="true"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
+        </LinearLayout>
+        <!--Empty view is useful for align component in the layout -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/actual_date_textview"
+            android:layout_width="wrap_content"
+            android:clickable="true"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Aujourd'hui"
+            android:textColor="@color/colorDark" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="80dp"
+            android:id="@+id/date_right_button"
+            android:clickable="true"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="false"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
