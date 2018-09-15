@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity
     static PendingIntent broadcastC;
     static PendingIntent broadcastT;
 
+    String numberPatient;
+    String phase;
+
     static Context ctx;
 
     @Override
@@ -89,14 +93,7 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView =  findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
-        // Show First Fragment
-        showMainFragment();
-
-        //Singleton
+//Singleton
         try {
             DatabaseManager db = new DatabaseManager(getApplicationContext());
         } catch (CouchbaseLiteException e) {
@@ -108,6 +105,28 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            retrieveUserData();
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+        }
+
+        NavigationView navigationView =  findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
+
+
+        View headerView = navigationView.getHeaderView(0);
+         TextView navNumberPatient =  headerView.findViewById(R.id.number_patient);
+         TextView navNumberPhase =  headerView.findViewById(R.id.number_phase);
+         if(phase!=null)
+        navNumberPhase.setText("Phase de traitement "+phase);
+         if(numberPatient!=null)
+        navNumberPatient.setText("Patient numéro "+numberPatient);
+
+        // Show First Fragment
+        showMainFragment();
 
 
 
@@ -165,6 +184,24 @@ public class MainActivity extends AppCompatActivity
             alarmManagerT.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, broadcastT);
         else
             alarmManagerT.cancel(broadcastT);
+    }
+    public void retrieveUserData()throws CouchbaseLiteException {
+        //We get all the reminders from the database
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("userData")));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+
+            phase = all.getString("phase");
+            numberPatient = all.getString("patient");
+        }
+
+
     }
 
 

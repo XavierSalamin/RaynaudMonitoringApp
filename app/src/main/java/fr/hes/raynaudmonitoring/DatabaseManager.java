@@ -144,6 +144,26 @@ public class DatabaseManager {
 
 
     }
+    public static void addUserData (String numberPatient, String numberPhase) throws CouchbaseLiteException {
+
+        String id = "userdata_";
+        MutableDocument doc = new MutableDocument(id);
+        doc.setString("type", "userData");
+        doc.setString("patient", numberPatient);
+
+        doc.setString("phase", numberPhase);
+
+
+        database.save(doc);
+
+
+    }
+
+
+
+
+
+
 
     public static void addCommentary (String text, Date date) throws CouchbaseLiteException {
 

@@ -48,7 +48,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="10dp"
-                            android:text="Numéro de client"
+                            android:text="Numéro de patient"
                             android:textColor="@color/colorTextEdit"
                             android:textSize="12dp" />
                     </LinearLayout>

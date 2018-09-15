@@ -4,6 +4,7 @@ package fr.hes.raynaudmonitoring;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Database;
 import com.couchbase.lite.Dictionary;
 import com.couchbase.lite.Expression;
 import com.couchbase.lite.Query;
@@ -84,9 +87,9 @@ public class Settings extends Fragment {
     EditText phaseEdit;
     EditText nameEdit;
 
-    String numberPatient;
-    String phase;
-    String namePdf;
+    static String numberPatient;
+    static String phase;
+    static String namePdf;
 
     int counterCrisis = 0;
     String durationCrisis;
@@ -111,13 +114,24 @@ public class Settings extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView = inflater.inflate(R.layout.activity_settings, container, false);
+        final View rootView = inflater.inflate(R.layout.activity_settings, container, false);
         button = rootView.findViewById(R.id.pdf_button);
         nameEdit = rootView.findViewById(R.id.edit_name_pdf);
         phaseEdit = rootView.findViewById(R.id.edit_phase_treatment);
         numberEdit = rootView.findViewById(R.id.edit_number_client);
 
+        try {
+            retrieveUserData();
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+        }
+        phaseEdit.setText(phase);
+        numberEdit.setText(numberPatient);
 
+        NavigationView nv =  getActivity().findViewById(R.id.nav_view);
+        View headerView = nv.getHeaderView(0);
+        final TextView navNumberPatient =  headerView.findViewById(R.id.number_patient);
+        final TextView navNumberPhase =  headerView.findViewById(R.id.number_phase);
         nameEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,6 +142,8 @@ public class Settings extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 namePdf = s.toString();
+
+
             }
         });
 
@@ -141,8 +157,18 @@ public class Settings extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 phase = s.toString();
+                navNumberPhase.setText("Phase de traitement "+phase);
+                try {
+                    DatabaseManager.addUserData(numberPatient, phase);
+                } catch (CouchbaseLiteException e) {
+                    e.printStackTrace();
+                }
             }
         });
+
+
+
+
 
         numberEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -154,6 +180,12 @@ public class Settings extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 numberPatient = s.toString();
+                navNumberPatient.setText("Patient numéro "+numberPatient);
+                try {
+                    DatabaseManager.addUserData(numberPatient, phase);
+                } catch (CouchbaseLiteException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -196,6 +228,7 @@ public class Settings extends Fragment {
             retrieveRCS();
             retrieveCommentary();
             retrieveCrisis();
+
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
@@ -655,7 +688,22 @@ public class Settings extends Fragment {
 
         }
     }
+    public void retrieveUserData()throws CouchbaseLiteException {
+        //We get all the reminders from the database
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("userData")));
 
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+
+            numberPatient = all.getString("phase");
+            phase = all.getString("patient");
+        }
+    }
 
     public void retrieveRCS()throws CouchbaseLiteException {
         //We get all the reminders from the database
@@ -682,8 +730,7 @@ public class Settings extends Fragment {
 
         }
 
-        resultRCS = rcs/counter;
-         averageRCS = String.format("%.2f", resultRCS);
+
     }
 
 
