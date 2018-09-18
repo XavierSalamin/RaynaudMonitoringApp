@@ -42,6 +42,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -112,6 +113,8 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
+
+
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -128,7 +131,11 @@ public class MainActivity extends AppCompatActivity
         // Show First Fragment
         showMainFragment();
 
-
+        try {
+            refreshReminders();
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -305,5 +312,132 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void refreshReminders() throws CouchbaseLiteException {
+        RemindersFragment.listReminders = new ArrayList<>();
+        RemindersFragment.adapter =  new RemindersAdapter(this, R.layout.reminderslist,      RemindersFragment.listReminders);
+        RemindersFragment.retrieveDataFromDatabase();
 
+        ArrayList<Reminder> l = RemindersFragment.listReminders;
+
+
+        for(int position = 0; position < l.size(); position++){
+            switch (l.get(position).getTitle()){
+                case "Traitement" :
+                    if(treatmentRegistredToday()){
+                        MainActivity.setAlarmTreatment(l.get(position).getHour(), l.get(position).getMinute(), false);
+                    }
+                    else{
+                        MainActivity.setAlarmTreatment(l.get(position).getHour(), l.get(position).getMinute(), true);
+                    }
+                    break;
+                case "Crise" :
+                    if(crisisRegistredToday()){
+                        MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), false);
+                    }
+                    else{
+                        MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), true);
+                    }
+
+                    break;
+                case "RCS" :
+                    if(rcsRegistredToday()){
+                        MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), false);
+                    }
+                    else{
+                        MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), true);
+                    }
+
+                    break;
+            }
+        }
+
+    }
+
+    //Say if one RCS was registred today
+    public static boolean rcsRegistredToday() throws CouchbaseLiteException {
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+
+        //We get all the RCS corresponding to the selected day
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("rcs"))
+                        .and(Expression.property("day").equalTo(Expression.intValue(day)))
+                        .and(Expression.property("month").equalTo(Expression.intValue(month)))
+                        .and(Expression.property("year").equalTo(Expression.intValue(year))));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+            if(all.getInt("rcs")>=0){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    //Say if one RCS was registred today
+    public static boolean crisisRegistredToday() throws CouchbaseLiteException {
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+
+        //We get all the RCS corresponding to the selected day
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("crisis"))
+                        .and(Expression.property("day").equalTo(Expression.intValue(day)))
+                        .and(Expression.property("month").equalTo(Expression.intValue(month)))
+                        .and(Expression.property("year").equalTo(Expression.intValue(year))));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+            if(all.getString("startName")!=null){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    //Say if one RCS was registred today
+    public static boolean treatmentRegistredToday() throws CouchbaseLiteException {
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+
+        //We get all the RCS corresponding to the selected day
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("treatment"))
+                        .and(Expression.property("day").equalTo(Expression.intValue(day)))
+                        .and(Expression.property("month").equalTo(Expression.intValue(month)))
+                        .and(Expression.property("year").equalTo(Expression.intValue(year))));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+            if(all.getString("description")!=null){
+                return true;
+            }
+        }
+        return false;
+
+    }
 }

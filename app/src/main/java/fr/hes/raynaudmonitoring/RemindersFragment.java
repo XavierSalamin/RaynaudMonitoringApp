@@ -43,7 +43,7 @@ public class RemindersFragment extends Fragment {
 
 private FloatingActionButton fab;
 private ListView listView;
-private static ArrayList<Reminder> listReminders;
+public static ArrayList<Reminder> listReminders;
 public static RemindersAdapter  adapter;
 
 
@@ -108,6 +108,7 @@ public static RemindersAdapter  adapter;
 
         try {
             retrieveDataFromDatabase();
+
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
@@ -226,6 +227,43 @@ public static RemindersAdapter  adapter;
 
                         try {
                             DatabaseManager.deleteReminder(r);
+
+
+
+
+
+
+                            //Activate alarms
+                            switch (listReminders.get(position).getTitle()){
+                                case "Traitement" :
+                                    MainActivity.setAlarmTreatment(listReminders.get(position).getHour(), listReminders.get(position).getMinute(), false);
+
+                                    break;
+                                case "Crise" :
+
+                                    MainActivity.setAlarmCrisis(listReminders.get(position).getHour(), listReminders.get(position).getMinute(), false);
+
+                                    break;
+                                case "RCS" :
+                                    MainActivity.setAlarmRcs(listReminders.get(position).getHour(), listReminders.get(position).getMinute(), false);
+                                    break;
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         } catch (CouchbaseLiteException e) {
                             e.printStackTrace();
                         }

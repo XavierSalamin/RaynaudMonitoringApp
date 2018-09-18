@@ -15,6 +15,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.couchbase.lite.CouchbaseLiteException;
+
 import java.util.Calendar;
 
 /**
@@ -179,11 +182,47 @@ public class AddRemindersActivity extends AppCompatActivity {
                     Reminder r = new Reminder(title, hour, minute);
                     r.setChecked(true);
                     switch (title){
-                        case "Traitement" : MainActivity.setAlarmTreatment(hour, minute, true);
+                        case "Traitement" :
+                            try {
+                                if(MainActivity.treatmentRegistredToday()){
+                                    MainActivity.setAlarmTreatment(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmTreatment(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
+
                             break;
-                        case "Crise" :      MainActivity.setAlarmCrisis(hour, minute, true);
+                        case "Crise" :
+                            try {
+                                if(MainActivity.crisisRegistredToday()){
+                                    MainActivity.setAlarmCrisis(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmCrisis(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
+
                             break;
-                        case "RCS" :         MainActivity.setAlarmRcs(hour, minute, true);
+                        case "RCS" :
+
+                            try {
+                                if(MainActivity.rcsRegistredToday()){
+                                    MainActivity.setAlarmRcs(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmRcs(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                     }
                     RemindersFragment.updateReminders(r, id);
@@ -198,14 +237,49 @@ public class AddRemindersActivity extends AppCompatActivity {
                     Reminder r = new Reminder(title, hour, minute);
                     r.setChecked(true);
                     switch (title){
-                        case "Traitement" : MainActivity.setAlarmTreatment(hour, minute, true);
+                        case "Traitement" :
+                            try {
+                                if(MainActivity.treatmentRegistredToday()){
+                                    MainActivity.setAlarmTreatment(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmTreatment(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
+
                             break;
-                        case "Crise" :      MainActivity.setAlarmCrisis(hour, minute, true);
+                        case "Crise" :
+                            try {
+                                if(MainActivity.crisisRegistredToday()){
+                                    MainActivity.setAlarmCrisis(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmCrisis(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
+
                             break;
-                        case "RCS" :         MainActivity.setAlarmRcs(hour, minute, true);
+                        case "RCS" :
+
+                            try {
+                                if(MainActivity.rcsRegistredToday()){
+                                    MainActivity.setAlarmRcs(hour, minute, false);
+                                }
+                                else{
+                                    MainActivity.setAlarmRcs(hour, minute, true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                     }
-
                     RemindersFragment.addReminders(r);
                     setResult(REMINDERS_REQUEST_START);
                     finish();

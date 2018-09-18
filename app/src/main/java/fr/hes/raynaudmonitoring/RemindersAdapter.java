@@ -13,7 +13,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.couchbase.lite.CouchbaseLiteException;
+import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Dictionary;
+import com.couchbase.lite.Expression;
+import com.couchbase.lite.Query;
+import com.couchbase.lite.QueryBuilder;
+import com.couchbase.lite.Result;
+import com.couchbase.lite.ResultSet;
+import com.couchbase.lite.SelectResult;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  * an Adapter object acts as a bridge between an AdapterView and the {@link Reminder}
  * The Adapter is also responsible for making a View for each item in the data set.
@@ -57,16 +69,47 @@ public class RemindersAdapter extends ArrayAdapter<Reminder>{
                     //Activate alarms
                     switch (l.get(position).getTitle()){
                         case "Traitement" :
-                            MainActivity.setAlarmTreatment(l.get(position).getHour(), l.get(position).getMinute(), true);
-                            Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
+                           try {
+                                if(MainActivity.treatmentRegistredToday()){
+                                    MainActivity.setAlarmTreatment(l.get(position).getHour(), l.get(position).getMinute(), false);
+                                }
+                                else{
+                                    MainActivity.setAlarmTreatment(l.get(position).getHour(), l.get(position).getMinute(), true);
+                                    Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                         case "Crise" :
-                            Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
-                            MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), true);
+
+                            try {
+                                if(MainActivity.crisisRegistredToday()){
+                                    MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), false);
+                                }
+                                else{
+                                    Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
+                                    MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                         case "RCS" :
-                            Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
-                            MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), true);
+                            try {
+                                if(MainActivity.rcsRegistredToday()){
+                                    MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), false);
+                                }
+                                else{
+                                    Toast.makeText(getContext(), "Rappel "+l.get(position).getTitle()+" à "+l.get(position).toString()+" activé !", Toast.LENGTH_SHORT).show();
+                                    MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), true);
+                                }
+                            } catch (CouchbaseLiteException e) {
+                                e.printStackTrace();
+                            }
+
                             break;
                     }
 
@@ -80,7 +123,9 @@ public class RemindersAdapter extends ArrayAdapter<Reminder>{
                             break;
                         case "Crise" :      MainActivity.setAlarmCrisis(l.get(position).getHour(), l.get(position).getMinute(), false);
                             break;
-                        case "RCS" :         MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), false);
+                        case "RCS" :
+
+                            MainActivity.setAlarmRcs(l.get(position).getHour(), l.get(position).getMinute(), false);
                             break;
                     }
                 }
@@ -91,6 +136,8 @@ public class RemindersAdapter extends ArrayAdapter<Reminder>{
         });
         return v;
     }
+
+
 
 
 }
