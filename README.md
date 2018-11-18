@@ -14,6 +14,12 @@ The following pieces need to be in place in order to run the application.
 5. Frontend Application
 
 
+## Bucket Properties
+Login credientals for the bucket properties
+
+"bucket": "users",
+"username": "users",
+"password": "123456",
 
 
 Note that the project uses Lombok, so code generation through annotation processing must be enabled.
@@ -36,7 +42,7 @@ Password : password
 
 Then start the Backend Java Spring Application with the command below 
 ```
-
+$ java -jar target/backend-0.0.1-SNAPSHOT.jar
 ```
 
 $
