@@ -1,0 +1,20 @@
+{
+    "log": ["*"],
+    "databases": {
+        "staging": {
+            "server": "http://localhost:8091",
+            "bucket": "users",
+            "username": "users",
+            "password": "123456",
+            "enable_shared_bucket_access": true,
+            "import_docs": "continuous",
+			"num_index_replicas": 0,
+            "users": { "GUEST": { "disabled": false, "admin_channels": ["*"] } },
+            "sync": `function (doc, oldDoc) {
+                if (doc.sdk) {
+                    channel(doc.sdk);
+                }
+            }`
+        }
+    }
+}
