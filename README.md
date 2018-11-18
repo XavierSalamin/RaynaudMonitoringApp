@@ -1,8 +1,4 @@
 # Raynaud Monitoring App
-Description du projet :
-
-
-
 
 ## Prerequisites
 The following pieces need to be in place in order to run the application.
