@@ -271,6 +271,7 @@ public class MainFragment extends Fragment {
         addCrisisLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseManager.startReplication();
                 Intent intent = new Intent(getActivity(), AddCrisisActivity.class);
                 startActivity(intent);
             }

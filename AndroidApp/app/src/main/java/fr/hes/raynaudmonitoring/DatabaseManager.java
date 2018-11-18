@@ -9,17 +9,23 @@ import com.couchbase.lite.Database;
 import com.couchbase.lite.DatabaseConfiguration;
 import com.couchbase.lite.Dictionary;
 import com.couchbase.lite.Document;
+import com.couchbase.lite.Endpoint;
 import com.couchbase.lite.Expression;
 import com.couchbase.lite.MutableDocument;
 import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryBuilder;
+import com.couchbase.lite.Replicator;
+import com.couchbase.lite.ReplicatorConfiguration;
 import com.couchbase.lite.Result;
 import com.couchbase.lite.ResultSet;
 import com.couchbase.lite.SelectResult;
+import com.couchbase.lite.URLEndpoint;
 import com.couchbase.lite.internal.support.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +40,8 @@ public class DatabaseManager {
 
     public Context context;
     public static Database database; //Singleton
+    public static Replicator replicator;
+
     public static MutableDocument mutableDoc;
 
     public DatabaseManager(Context context) throws CouchbaseLiteException {
@@ -43,8 +51,24 @@ public class DatabaseManager {
         DatabaseConfiguration config = new DatabaseConfiguration(context);
         database = new Database("staging", config);
 
+
+
     }
 
+
+    public static void startReplication() {
+        URI uri = null;
+        try {
+            uri = new URI("ws://192.168.43.239:4984/staging");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        Endpoint endpoint = new URLEndpoint(uri);
+        ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
+        config.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH);
+        replicator = new Replicator(config);
+        replicator.start();
+    }
 
     public static Database getDatabase() {
         return database;

@@ -20,15 +20,22 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.couchbase.lite.BasicAuthenticator;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Dictionary;
+import com.couchbase.lite.Endpoint;
 import com.couchbase.lite.Expression;
 import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryBuilder;
+import com.couchbase.lite.Replicator;
+import com.couchbase.lite.ReplicatorChange;
+import com.couchbase.lite.ReplicatorChangeListener;
+import com.couchbase.lite.ReplicatorConfiguration;
 import com.couchbase.lite.Result;
 import com.couchbase.lite.ResultSet;
 import com.couchbase.lite.SelectResult;
+import com.couchbase.lite.URLEndpoint;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -41,10 +48,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import static fr.hes.raynaudmonitoring.DatabaseManager.database;
 
 /**
  * The main activity that contains all the fragments
@@ -96,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 //Singleton
         try {
-            DatabaseManager db = new DatabaseManager(getApplicationContext());
+            DatabaseManager database = new DatabaseManager(getApplicationContext());
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
@@ -136,6 +147,8 @@ public class MainActivity extends AppCompatActivity
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();
         }
+
+
 
     }
 
