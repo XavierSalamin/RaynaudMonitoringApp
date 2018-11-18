@@ -39,7 +39,7 @@ Login credentials are as follows
 ```
 Username : Administrator
 Password : password
-
+```
 Then start the Backend Java Spring Application with the command below 
 ```
 $ java -jar target/backend-0.0.1-SNAPSHOT.jar
