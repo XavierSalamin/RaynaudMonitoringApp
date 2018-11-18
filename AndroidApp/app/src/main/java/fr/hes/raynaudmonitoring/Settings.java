@@ -82,6 +82,7 @@ public class Settings extends Fragment {
     ArrayList<String> dateRcs;
 
     Button button;
+    Button button_push;
 
     EditText numberEdit;
     EditText phaseEdit;
@@ -116,6 +117,7 @@ public class Settings extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.activity_settings, container, false);
         button = rootView.findViewById(R.id.pdf_button);
+        button_push = rootView.findViewById(R.id.push_button);
         nameEdit = rootView.findViewById(R.id.edit_name_pdf);
         phaseEdit = rootView.findViewById(R.id.edit_phase_treatment);
         numberEdit = rootView.findViewById(R.id.edit_number_client);
@@ -244,6 +246,13 @@ public class Settings extends Fragment {
             }
         });
 
+
+        button_push.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseManager.startReplication();
+            }
+        });
 
         try {
             generateJson();
