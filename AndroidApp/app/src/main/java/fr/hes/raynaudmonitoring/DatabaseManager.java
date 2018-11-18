@@ -38,9 +38,13 @@ import static java.time.LocalDate.now;
  */
 public class DatabaseManager {
 
+    public static final String DB_NAME = "staging";
+    public static final String IP_CIBLE = "192.168.43.239:4984";
     public Context context;
     public static Database database; //Singleton
     public static Replicator replicator;
+
+
 
     public static MutableDocument mutableDoc;
 
@@ -49,7 +53,7 @@ public class DatabaseManager {
         final String TAG = "DATABASE";
         // Get the database (and create it if it doesn’t exist).
         DatabaseConfiguration config = new DatabaseConfiguration(context);
-        database = new Database("staging", config);
+        database = new Database(DB_NAME, config);
 
 
 
@@ -59,7 +63,7 @@ public class DatabaseManager {
     public static void startReplication() {
         URI uri = null;
         try {
-            uri = new URI("ws://192.168.43.239:4984/staging");
+            uri = new URI("ws://"+ IP_CIBLE +"/"+DB_NAME);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
