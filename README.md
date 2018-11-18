@@ -44,5 +44,4 @@ Then start the Backend Java Spring Application with the command below
 ```
 $ java -jar target/backend-0.0.1-SNAPSHOT.jar
 ```
-
-$
+Finally you can access the backend REST API on http://localhost:8080/_admin/
