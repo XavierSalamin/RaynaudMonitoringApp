@@ -19,24 +19,24 @@ The following pieces need to be in place in order to run the application.
 Note that the project uses Lombok, so code generation through annotation processing must be enabled.
 
 ## Running the Application
-To download the application you can either download [the archive](https://github.com/couchbaselabs/try-cb-java/archive/2.0.0.zip) or
-clone the repository:
+At first make sure that Couchbase Server is Running
+Then launch "Sync Gateway" with the right configuration
 
 ```
-$ git clone https://github.com/couchbaselabs/try-cb-java.git
+$ cd path_to_sync_gateway
+$ sync_gateway sync-gateway-config.json
 ```
 
-Now change into the directory (`$ cd try-cb-java`) and then run the following maven command.
+If all goes well, this will start a admin rest api on http://localhost:4985/_admin/
+and the couchbase server interface on http://localhost:8091
+Login credentials are as follows
+```
+Username : Administrator
+Password : password
+
+Then start the Backend Java Spring Application with the command below 
+```
 
 ```
-mvn spring-boot:run
-```
 
-If all goes well, this will start a web server on http://localhost:4985/_admin/
-```
-
-```
-
-If all goes well, this will start a web server on http://localhost:4985/_admin/
-```
 $
