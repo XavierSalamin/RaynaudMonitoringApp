@@ -1,8 +1,10 @@
 package fr.hes.raynaudmonitoring;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Environment;
 
+import com.couchbase.lite.Blob;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Database;
@@ -24,11 +26,15 @@ import com.couchbase.lite.internal.support.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
+
+import fr.hes.raynaudmonitoring.model.UserRequest;
 
 import static java.time.LocalDate.now;
 
@@ -40,6 +46,7 @@ public class DatabaseManager {
 
     public static final String DB_NAME = "staging";
     public static final String IP_CIBLE = "192.168.43.239:4984";
+    public static final String USER_REQUEST_TYPE = "user_request";
     public Context context;
     public static Database database; //Singleton
     public static Replicator replicator;
@@ -54,7 +61,7 @@ public class DatabaseManager {
         // Get the database (and create it if it doesn’t exist).
         DatabaseConfiguration config = new DatabaseConfiguration(context);
         database = new Database(DB_NAME, config);
-
+        addImageTest();
 
 
     }
@@ -381,4 +388,45 @@ public class DatabaseManager {
     }
 
 
+    public static void addUserRequest (UserRequest userRequest) throws CouchbaseLiteException {
+
+        //We add the current date to the database with the names of the images
+        String uniqueID = UUID.randomUUID().toString();
+        String id = userRequest.getFirstname()+"_"+uniqueID;
+
+
+        MutableDocument doc = new MutableDocument(id);
+        doc.setString("firstname", userRequest.getFirstname());
+
+        doc.setString("lastname", userRequest.getLastname());
+        doc.setString("birthDate", userRequest.getBirthdate());
+        doc.setString("type", USER_REQUEST_TYPE);
+
+        database.save(doc);
+    }
+
+
+    public  void addImageTest(){
+        MutableDocument newTask = new MutableDocument();
+        AssetManager mngr = context.getAssets();
+        InputStream is = null;
+        try {
+            is = mngr.open("logo_concept.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Blob blob = new Blob("image/png", is);
+            newTask.setBlob("avatartest", blob);
+            database.save(newTask);
+        } catch (CouchbaseLiteException e) {
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+
+            }
+        }
+    }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TermsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:layout_margin="16dp"
+    android:textSize="18dp"
+    android:text="These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full.   If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.
+
+[You must be at least [18] years of age to use this website.  By using this website [and by agreeing to these terms and conditions] you warrant and represent that you are at least [18] years of age.]
+
+[This website uses cookies.  By using this website and agreeing to these terms and conditions, you consent to our application 's use of cookies in accordance with the terms of this [privacy policy / cookies policy].]
+"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="150dp"
+        android:background="@color/colorBackground"
+        android:layout_height="60dp"
+        android:id="@+id/decline_button"
+        android:text="Je refuse"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/agree_button"
+        android:background="@color/colorPrimary"
+        android:text="J'accepte"/>
+    </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

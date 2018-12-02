@@ -26,6 +26,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.couchbase.lite.Blob;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Dictionary;
@@ -36,6 +37,7 @@ import com.couchbase.lite.Result;
 import com.couchbase.lite.ResultSet;
 import com.couchbase.lite.SelectResult;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -460,6 +462,7 @@ public class MainFragment extends Fragment {
         DateManager.setTextViewFormattedDate(c.getDate(), actualDateTextView);
 
     }
+
 
     public static void retrieveDataFromDatabase() throws CouchbaseLiteException {
 

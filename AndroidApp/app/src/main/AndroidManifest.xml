@@ -20,14 +20,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver android:name=".AlarmReceiverRcs" />
         <receiver android:name=".AlarmReceiverTreatment" />
@@ -35,19 +28,17 @@
 
         <activity
             android:name=".AddCrisisActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_add_crisis" />
-        <activity android:name=".ThermoActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".AddTreatmentActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".AddRemindersActivity"
-            android:screenOrientation="portrait">
-            </activity>
+            android:label="@string/title_activity_add_crisis"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ThermoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddTreatmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddRemindersActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -64,18 +55,29 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PicturesPreviewActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_pictures_preview"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
-        <activity android:name=".ThermoPreviewActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Settings"
-            android:screenOrientation="portrait"></activity>
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ThermoPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".TermsActivity"></activity>
     </application>
 
 </manifest>
