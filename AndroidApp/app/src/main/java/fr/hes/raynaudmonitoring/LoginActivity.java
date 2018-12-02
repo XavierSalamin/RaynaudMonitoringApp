@@ -20,6 +20,7 @@ import com.couchbase.lite.SelectResult;
 public class LoginActivity extends Activity {
 
     private Button registryButton;
+    private Button loginButton;
     static Context ctx;
 
     @Override
@@ -44,7 +45,15 @@ public class LoginActivity extends Activity {
                 startActivity(intent);
             }
         });
+        loginButton = findViewById(R.id.login_link_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(ctx, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

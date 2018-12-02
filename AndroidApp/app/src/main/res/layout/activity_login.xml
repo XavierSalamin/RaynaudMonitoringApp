@@ -115,7 +115,7 @@
             android:layout_marginLeft="70dp"
             android:layout_height="50dp"
             android:layout_margin="12dp"
-
+            android:id="@+id/login_link_button"
             android:text="Login"
             android:background="@color/colorPrimary"/>
             <Button

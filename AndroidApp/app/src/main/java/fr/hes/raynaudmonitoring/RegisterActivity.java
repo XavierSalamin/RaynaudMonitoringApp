@@ -45,9 +45,10 @@ public class RegisterActivity extends Activity {
             @Override
             public void onClick(View v) {
                 addUserRequest(new UserRequest(firstname, lastname, birthDate));
-                DatabaseManager.startReplication();
+
                 Intent intent = new Intent(ctx, TermsActivity.class);
                 startActivity(intent);
+
             }
         });
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class TermsActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class TermsActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ctx, MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(ctx, "Inscription réussie", Toast.LENGTH_SHORT).show();
             }
         });
     }

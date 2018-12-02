@@ -3,6 +3,7 @@ package fr.hes.raynaudmonitoring;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
+import android.widget.Toast;
 
 import com.couchbase.lite.Blob;
 import com.couchbase.lite.CouchbaseLiteException;
@@ -25,6 +26,7 @@ import com.couchbase.lite.URLEndpoint;
 import com.couchbase.lite.internal.support.Log;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -47,13 +49,11 @@ public class DatabaseManager {
     public static final String DB_NAME = "staging";
     public static final String IP_CIBLE = "192.168.43.239:4984";
     public static final String USER_REQUEST_TYPE = "user_request";
-    public Context context;
+    private static  Context context;
     public static Database database; //Singleton
     public static Replicator replicator;
 
 
-
-    public static MutableDocument mutableDoc;
 
     public DatabaseManager(Context context) throws CouchbaseLiteException {
         this.context = context;
@@ -61,7 +61,6 @@ public class DatabaseManager {
         // Get the database (and create it if it doesn’t exist).
         DatabaseConfiguration config = new DatabaseConfiguration(context);
         database = new Database(DB_NAME, config);
-        addImageTest();
 
 
     }
@@ -406,27 +405,42 @@ public class DatabaseManager {
     }
 
 
-    public  void addImageTest(){
-        MutableDocument newTask = new MutableDocument();
-        AssetManager mngr = context.getAssets();
-        InputStream is = null;
-        try {
-            is = mngr.open("logo_concept.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void addBlobPicture(String fileName, String key){
+        MutableDocument newTask = new MutableDocument(key);
+        if(fileName!=null) {
+            String path = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + fileName + ".jpg";
+            File imgFile = new File(path);
+            InputStream is = null;
 
-        try {
-            Blob blob = new Blob("image/png", is);
-            newTask.setBlob("avatartest", blob);
-            database.save(newTask);
-        } catch (CouchbaseLiteException e) {
-        } finally {
+
+
             try {
-                is.close();
+                is = new FileInputStream(imgFile);
             } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            try {
+                Blob blob = new Blob("image/png", is);
+                newTask.setBlob("avatartest", blob);
+
+
+                database.save(newTask);
+            } catch (CouchbaseLiteException e) {
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException e) {
+
+                }
             }
         }
+        else{
+            Toast.makeText(context, "unknow file to push", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static  Context getContext(){
+        return context;
     }
 }

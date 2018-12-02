@@ -83,6 +83,7 @@ public class Settings extends Fragment {
 
     Button button;
     Button button_push;
+    Button deleteButton;
 
     EditText numberEdit;
     EditText phaseEdit;
@@ -251,9 +252,24 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View v) {
                 DatabaseManager.startReplication();
+
+                Toast.makeText(getContext(), "Data pushed to the server", Toast.LENGTH_SHORT).show();
             }
         });
 
+        deleteButton = rootView.findViewById(R.id.delete_button);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    DatabaseManager.deleteAll();
+                } catch (CouchbaseLiteException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getContext(), "Database deleted, this application need to restart", Toast.LENGTH_SHORT).show();
+            }
+        });
         try {
             generateJson();
         } catch (JSONException e) {

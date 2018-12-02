@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.couchbase.lite.BasicAuthenticator;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Database;
 import com.couchbase.lite.Dictionary;
 import com.couchbase.lite.Endpoint;
 import com.couchbase.lite.Expression;

@@ -198,7 +198,17 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 android:elevation="17dp"
-                android:text="PUSH data" />
+                android:text="Push data" />
+
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/colorRed"
+                android:elevation="17dp"
+                android:text="Delete database" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

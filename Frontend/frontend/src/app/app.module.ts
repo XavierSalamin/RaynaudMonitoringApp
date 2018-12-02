@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { UserRequestService } from './shared/user-request/user-request.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRequestListComponent } from './user-request-list/user-request-list.component';
+import { ScripthackComponent } from './scripthack/scripthack.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRequestListComponent
+    UserRequestListComponent,
+    ScripthackComponent
   ],
   imports: [
     BrowserModule,

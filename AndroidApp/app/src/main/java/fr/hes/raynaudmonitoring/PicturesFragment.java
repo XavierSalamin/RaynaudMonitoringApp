@@ -356,6 +356,7 @@ public class PicturesFragment extends Fragment {
                startText =  formattedDate;
                startTextView.setText(formattedDate);
 
+
            }
 
             if(data.getStringExtra("endName")!=null){
