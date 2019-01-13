@@ -231,21 +231,18 @@ public class CamTestActivity extends Activity {
      * Return true if the date passed as parameters is the date from Yesterday
      * @return a File with a storage directory and a name based on a timestamp
      */
-    private File createImageFile() throws IOException {
+    private File createImageFile() {
         String timeStamp = new SimpleDateFormat("dMMMyyyy_mmhhSS").format(new Date());
         imageFileName = "pictures_"+timeStamp;
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = new File(storageDir, imageFileName+".jpg");
-
-        return image;
-
-
-
-
-
-
-
-
+        try {
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            File image = new File(storageDir, imageFileName + ".jpg");
+            return image;
+        }
+        catch(Exception e){
+            Toast.makeText(ctx, "Une erreur c'est produite : "+e, Toast.LENGTH_SHORT).show();
+            return new File(imageFileName);
+        }
 
     }
     /**
