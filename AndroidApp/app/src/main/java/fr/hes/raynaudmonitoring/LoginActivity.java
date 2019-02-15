@@ -12,14 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
-import com.couchbase.lite.DataSource;
-import com.couchbase.lite.Dictionary;
-import com.couchbase.lite.Expression;
-import com.couchbase.lite.Query;
-import com.couchbase.lite.QueryBuilder;
-import com.couchbase.lite.Result;
-import com.couchbase.lite.ResultSet;
-import com.couchbase.lite.SelectResult;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginActivity extends Activity {
 
@@ -27,14 +22,17 @@ public class LoginActivity extends Activity {
     private Button loginButton;
     static Context ctx;
 
-    private EditText usernameEdit;
-    private EditText passwordEdit;
+    private EditText firstnameEdit;
+    private EditText lastnameEdit;
 
-    private String username;
-    private String password;
+    private String firstname;
+    private String lastname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final Logger logger = Logger.getLogger(String.valueOf(LoginActivity.class));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //Singleton
@@ -44,12 +42,12 @@ public class LoginActivity extends Activity {
             e.printStackTrace();
         }
 
-        usernameEdit = findViewById(R.id.username_edittext);
-        passwordEdit = findViewById(R.id.password_edittext);
+        firstnameEdit = findViewById(R.id.username_edittext);
+        lastnameEdit = findViewById(R.id.password_edittext);
 
-        usernameEdit.addTextChangedListener(new TextWatcher() {
+        firstnameEdit.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                username = s.toString();
+                firstname = s.toString();
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -57,9 +55,9 @@ public class LoginActivity extends Activity {
 
             }
         });
-        passwordEdit.addTextChangedListener(new TextWatcher() {
+        lastnameEdit.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                password = s.toString();
+                lastname = s.toString();
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -81,13 +79,28 @@ public class LoginActivity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if("admin".equals(username)&&"raynaud2018".equals(password)) {
-                    Intent intent = new Intent(ctx, MainActivity.class);
-                    startActivity(intent);
+
+
+
+                //Retrive Data from the sync gateway
+                DatabaseManager.pullData();
+                logger.log(Level.INFO, "Data pulled from Sync Gateway");
+
+                //Check if firstname + lastname match any user_profile type in SG
+                try {
+                    if(DatabaseManager.checkLogin(firstname, lastname)) {
+                        Intent intent = new Intent(ctx, MainActivity.class);
+                        Toast.makeText(LoginActivity.this, "Connexion réussie !", Toast.LENGTH_SHORT).show();
+                        DatabaseManager.setUserProfile(firstname+lastname);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Ce compte n'existe pas. Veuillez vérifier vos identifiants !", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (CouchbaseLiteException e) {
+                    e.printStackTrace();
                 }
-                else{
-                    Toast.makeText(LoginActivity.this, "Ce compte n'existe pas. Veuillez vérifier vos identifiants !", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
     }

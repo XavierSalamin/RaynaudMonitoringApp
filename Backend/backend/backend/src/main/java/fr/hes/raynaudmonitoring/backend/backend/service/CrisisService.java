@@ -11,4 +11,7 @@ public interface CrisisService {
 	CrisisDoc findById(String id);
 
 	List<CrisisDoc> findAll();
+
+	List<CrisisDoc> findCrisisByUser(String profileId);
+
 }

@@ -47,12 +47,13 @@ public class TermsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(agreed){
-                    //Intent intent = new Intent(ctx, MainActivity.class);
+                    Intent intent = new Intent(ctx, MainActivity.class);
 
-                    Intent intent = new Intent(ctx, LoginActivity.class);
+                    //Intent intent = new Intent(ctx, LoginActivity.class);
                     startActivity(intent);
-                    Toast.makeText(ctx, "ERROR - Le serveur n'est pas disponible", Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(ctx, "Inscription réussie", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(ctx, "ERROR - Le serveur n'est pas disponible", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, "Inscription réussie", Toast.LENGTH_SHORT).show();
+                    DatabaseManager.startReplication();
                 }
                 else{
                     Toast.makeText(ctx, "Vous n'avez pas validé le formulaire", Toast.LENGTH_SHORT).show();

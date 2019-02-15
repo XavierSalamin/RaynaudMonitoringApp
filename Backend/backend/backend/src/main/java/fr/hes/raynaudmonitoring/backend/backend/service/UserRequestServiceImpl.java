@@ -27,6 +27,12 @@ public class UserRequestServiceImpl implements UserRequestService {
 	  }
 	  
 	  @Override
+	  public UserProfileDoc findProfileById(String id) {
+	    final Optional<UserProfileDoc> userObj = userProfileRepo.findById(UserProfileDoc.getKeyFor(id));
+	    return userObj.orElseThrow();
+	  }
+	  
+	  @Override
 	  public UserRequestDoc findByFirstName(String firstname) {
 	    final Optional<UserRequestDoc> userObj = userRequestRepo.findByFirstname(firstname);
 	    return userObj.orElseThrow();
@@ -63,6 +69,10 @@ public class UserRequestServiceImpl implements UserRequestService {
 		userProfile.setPeriodNumber(jsonUserProfile.getPatientNumber());
 		
 		return userProfile;
+	}
+
+	public List<UserProfileDoc> findAllProfile() {
+		  return userProfileRepo.findAllUserProfile();
 	}
 
 

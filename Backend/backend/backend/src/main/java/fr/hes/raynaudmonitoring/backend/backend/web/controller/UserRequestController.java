@@ -42,6 +42,14 @@ public class UserRequestController {
 	    return userRequestService.findById(userId);
 	  }
 	  
+	  @GetMapping(value = "/profile/{userId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  @ResponseBody
+	  public UserProfileDoc findProfileById(@PathVariable String userId) {
+	    logger.info("Find user by id: {}", userId);
+	    return userRequestService.findProfileById(userId);
+	  }
+	  
 		
 	  @GetMapping(value = "/find/{firstname}")
 	  @ResponseStatus(HttpStatus.OK)
@@ -67,5 +75,14 @@ public class UserRequestController {
 	  public List<UserRequestDoc> findAllUser() {
 
 	    return userRequestService.findAllUser();
+	  }
+	  
+	  
+	  @GetMapping(value = "/profile/all")
+	  @ResponseStatus(HttpStatus.OK)
+	  @ResponseBody
+	  public List<UserProfileDoc> findAllProfile() {
+
+	    return userRequestService.findAllProfile();
 	  }
 }

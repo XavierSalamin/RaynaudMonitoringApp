@@ -34,4 +34,10 @@ public class CrisisServiceImpl implements CrisisService {
 	    return crisisRepo.findAll();
 	  }
 
+	@Override
+	public List<CrisisDoc> findCrisisByUser(String profileId) {
+		// TODO Auto-generated method stub
+		return crisisRepo.findCrisisById(profileId);
+	}
+
 }

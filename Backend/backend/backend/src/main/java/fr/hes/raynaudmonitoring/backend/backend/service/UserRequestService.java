@@ -18,4 +18,6 @@ public interface UserRequestService {
 	UserRequestDoc findByFirstName(String firstname);
 	
 	UserProfileDoc addUserProfile(@Valid UserProfileJson jsonUserProfile);
+	UserProfileDoc findProfileById(String id);
+	List<UserProfileDoc> findAllProfile();
 }

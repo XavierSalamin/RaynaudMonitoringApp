@@ -185,6 +185,7 @@ public class PicturesPreviewActivity extends AppCompatActivity {
         File imgFile = new File(path);
         if (imgFile.exists()) {
             DatabaseManager.addBlobPicture(getIntent().getStringExtra("fileName"), "allez");
+            DatabaseManager.startReplication();
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(myBitmap, myBitmap.getWidth(), myBitmap.getHeight(), true);
             final Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);

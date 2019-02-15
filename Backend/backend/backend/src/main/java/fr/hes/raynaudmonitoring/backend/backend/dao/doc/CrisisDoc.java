@@ -41,6 +41,9 @@ public class CrisisDoc implements Serializable {
   private String endText;
   
   @Field
+  private String userProfile;
+  
+  @Field
   private int day;
   @Field
   private int month;
@@ -49,7 +52,7 @@ public class CrisisDoc implements Serializable {
   
   public CrisisDoc() {}
 
-  public CrisisDoc(String key, String id, String type, Integer hourStart, Integer hourEnd, String startText, int day, int month, int year) {
+  public CrisisDoc(String key, String id, String type, Integer hourStart, Integer hourEnd, String startText, int day, int month, int year, String userProfile) {
     super();
     this.key = key;
     this.id = id;
@@ -58,7 +61,8 @@ public class CrisisDoc implements Serializable {
     this.hourEnd = hourEnd;
     this.startText = startText;
     this.day= day;
-    this.month = month;
+    this.month = month+1;
+    this.userProfile=userProfile;
     this.year =year;
   }
 
@@ -106,6 +110,7 @@ public class CrisisDoc implements Serializable {
     this.hourStart = hourStart;
   }
 
+  
 
 
 

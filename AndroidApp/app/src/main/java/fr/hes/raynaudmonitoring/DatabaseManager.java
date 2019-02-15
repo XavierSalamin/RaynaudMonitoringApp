@@ -35,6 +35,8 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import fr.hes.raynaudmonitoring.model.UserRequest;
 
@@ -46,9 +48,15 @@ import static java.time.LocalDate.now;
  */
 public class DatabaseManager {
 
+
+    private static Logger log = Logger.getLogger(String.valueOf(DatabaseManager.class));
+
     public static final String DB_NAME = "staging";
     public static final String IP_CIBLE = "192.168.43.239:4984";
     public static final String USER_REQUEST_TYPE = "user_request";
+
+
+    public  static  String userProfile ="";
     private static  Context context;
     public static Database database; //Singleton
     public static Replicator replicator;
@@ -76,6 +84,22 @@ public class DatabaseManager {
         Endpoint endpoint = new URLEndpoint(uri);
         ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
         config.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH);
+        replicator = new Replicator(config);
+        replicator.start();
+    }
+
+
+
+    public static void pullData() {
+        URI uri = null;
+        try {
+            uri = new URI("ws://"+ IP_CIBLE +"/"+DB_NAME);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        Endpoint endpoint = new URLEndpoint(uri);
+        ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
+        config.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PULL);
         replicator = new Replicator(config);
         replicator.start();
     }
@@ -123,6 +147,15 @@ public class DatabaseManager {
     }
 
 
+    public static void setUserProfile(String id){
+        userProfile=id;
+    }
+
+    public static void addUserProfile(MutableDocument doc){
+        doc.setString("user_profile", userProfile);
+    }
+
+
 
     public static void addTreatment (Treatment t) throws CouchbaseLiteException {
         String id = getTreatmentId(t);
@@ -135,6 +168,7 @@ public class DatabaseManager {
         doc.setString("description", t.getDescription());
         doc.setDate("date", t.getDate());
         doc.setBoolean("sideEffects", t.isSideEffects());
+        addUserProfile(doc);
 
 
 
@@ -158,6 +192,9 @@ public class DatabaseManager {
         doc.setInt("day", cal.get(Calendar.DAY_OF_MONTH));
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
+        addUserProfile(doc);
+
+
 
         database.save(doc);
     }
@@ -172,6 +209,9 @@ public class DatabaseManager {
         doc.setInt("minute",r.getMinute());
         doc.setString("title", r.getTitle());
         doc.setBoolean("isChecked", r.isChecked());
+        addUserProfile(doc);
+
+
 
 
         database.save(doc);
@@ -186,16 +226,12 @@ public class DatabaseManager {
         doc.setString("patient", numberPatient);
 
         doc.setString("phase", numberPhase);
-
+        addUserProfile(doc);
 
         database.save(doc);
 
 
     }
-
-
-
-
 
 
 
@@ -214,7 +250,7 @@ public class DatabaseManager {
         doc.setInt("day", cal.get(Calendar.DAY_OF_MONTH));
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
-
+        addUserProfile(doc);
         database.save(doc);
     }
 
@@ -250,7 +286,7 @@ public class DatabaseManager {
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
         doc.setInt("pain", crisis.getPain());
-
+        addUserProfile(doc);
         database.save(doc);
     }
 
@@ -274,6 +310,36 @@ public class DatabaseManager {
 
         Document doc = database.getDocument(id);
         database.delete(doc);
+
+    }
+
+    public static boolean checkLogin(String firstname, String lastname) throws CouchbaseLiteException {
+
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("user_profile"))
+                        .and(Expression.property("firstname").equalTo(Expression.string(firstname)))
+                        .and(Expression.property("lastname").equalTo(Expression.string(lastname))));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+
+            if(all.count()>=1) {
+                log.log(Level.INFO, "Login validated");
+                return true;
+            }
+
+        }
+
+
+        log.log(Level.INFO, "Login refused");
+        return false;
+
+
+
+
 
     }
 
@@ -400,7 +466,7 @@ public class DatabaseManager {
         doc.setString("lastname", userRequest.getLastname());
         doc.setString("birthDate", userRequest.getBirthdate());
         doc.setString("type", USER_REQUEST_TYPE);
-
+        addUserProfile(doc);
         database.save(doc);
     }
 
