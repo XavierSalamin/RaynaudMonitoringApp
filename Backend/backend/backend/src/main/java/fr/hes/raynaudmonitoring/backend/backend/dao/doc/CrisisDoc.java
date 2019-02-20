@@ -2,8 +2,6 @@ package fr.hes.raynaudmonitoring.backend.backend.dao.doc;
 
 import java.io.Serializable;
 
-import java.util.List;
-
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import com.couchbase.client.java.repository.annotation.Field;
@@ -12,108 +10,123 @@ import com.couchbase.client.java.repository.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Document
-@Getter  @Setter
+@Getter
+@Setter
 public class CrisisDoc implements Serializable {
 
-  private static final long serialVersionUID = 3072475211055736282L;
-  protected static final String USER_KEY_PREFIX = "crisis::";
+	private static final long serialVersionUID = 3072475211055736282L;
+	protected static final String USER_KEY_PREFIX = "crisis::";
 
-  @Id
-  private String key;
+	@Id
+	private String key;
 
-  @Field
-  private String id;
-  @Field
-  private String type;
+	@Field
+	private String id;
+	@Field
+	private String type;
 
-  @Field
-  private Integer hourStart;
+	@Field
+	private Integer hourStart;
 
-  @Field
-  private Integer hourEnd;
-  
-  @Field
-  private String startText;
+	@Field
+	private Integer hourEnd;
 
-  @Field
-  private String endText;
-  
-  @Field
-  private String userProfile;
-  
-  @Field
-  private int day;
-  @Field
-  private int month;
-  @Field
-  private int year;
-  
-  public CrisisDoc() {}
+	@Field
+	private Integer minuteEnd;
+	@Field
+	private Integer minuteStart;
 
-  public CrisisDoc(String key, String id, String type, Integer hourStart, Integer hourEnd, String startText, int day, int month, int year, String userProfile) {
-    super();
-    this.key = key;
-    this.id = id;
-    this.type = type;
-    this.hourStart = hourStart;
-    this.hourEnd = hourEnd;
-    this.startText = startText;
-    this.day= day;
-    this.month = month+1;
-    this.userProfile=userProfile;
-    this.year =year;
-  }
+	@Field
+	private String startText;
 
-  public CrisisDoc(String id, String type) {
-    this.id = id;
-    this.type = type;
-  }
+	@Field
+	private String endText;
 
-  public static String getKeyFor(String id) {
-    return  id;
-  }
+	@Field
+	private String userProfile;
 
-  public String getKey() {
-    return key;
-  }
+	@Field
+	private int pain;
 
-  public void setKey(String key) {
-    this.key = key;
-  }
+	@Field
+	private int day;
+	@Field
+	private int month;
+	@Field
+	private int year;
 
-  public String getId() {
-    return id;
-  }
+	public CrisisDoc() {
+	}
 
-  public void setId(String id) {
-    this.id = id;
-    this.key = CrisisDoc.getKeyFor(id);
-  }
+	public CrisisDoc(final String key, final String id, final String type, final Integer hourStart,
+			final Integer hourEnd, final String startText, final int day, final int month, final int year,
+			final String userProfile, final int pain, final int minuteEnd, final int minuteStart) {
+		super();
+		this.key = key;
+		this.id = id;
+		this.type = type;
+		this.hourStart = hourStart;
+		this.hourEnd = hourEnd;
+		this.startText = startText;
+		this.day = day;
+		this.month = month + 1;
+		this.userProfile = userProfile;
+		this.year = year;
+		this.pain = pain;
 
-  public String getType() {
-    return type;
-  }
+		this.minuteEnd = minuteEnd;
+		this.minuteStart = minuteStart;
+	}
 
-  public void setType(String type) {
-    this.type = type;
-  }
+	public CrisisDoc(final String id, final String type) {
+		this.id = id;
+		this.type = type;
+	}
 
+	public void setMonth(final int month) {
+		this.month = month + 1;
+	}
 
+	public int getMonth() {
+		return month;
+	}
 
-  public Integer getHourStart() {
-    return hourStart;
-  }
+	public static String getKeyFor(final String id) {
+		return id;
+	}
 
-  public void setHourStart(Integer hourStart) {
-    this.hourStart = hourStart;
-  }
+	public String getKey() {
+		return key;
+	}
 
-  
+	public void setKey(final String key) {
+		this.key = key;
+	}
 
+	public String getId() {
+		return id;
+	}
 
+	public void setId(final String id) {
+		this.id = id;
+		this.key = CrisisDoc.getKeyFor(id);
+	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(final String type) {
+		this.type = type;
+	}
+
+	public Integer getHourStart() {
+		return hourStart;
+	}
+
+	public void setHourStart(final Integer hourStart) {
+		this.hourStart = hourStart;
+	}
 
 }
-
