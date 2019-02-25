@@ -73,7 +73,35 @@
        <groupId>org.springframework.boot</groupId>
        <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-     </plugins>
+      
+      
+      <!--  Compiler avec Angular -->
+
+	<plugin> 
+		<artifactId>maven-resources-plugin</artifactId>     
+		<executions>  
+			<execution>   
+			<id>copy-resources</id>    
+			<phase>validate</phase> 
+			<goals><goal>copy-resources</goal></goals>             
+			<configuration>                                 
+				<outputDirectory>${build.directory}/classes/static/</outputDirectory >      
+				<resources>
+					<resource>
+					<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+					<directory>static</directory>
+					<targetPath>static</targetPath>
+					</resource>
+				</resources> 
+			</configuration>        
+			</execution>   
+		</executions> 
+	</plugin>
+
+      
+</plugins>
     </build>
 
 </project>
