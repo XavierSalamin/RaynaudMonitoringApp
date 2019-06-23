@@ -1,0 +1,14 @@
+.crisisImages {
+  transform: rotate(90deg);
+}
+
+.container {
+    width: 500px;
+    height: 320px;
+}
+
+/* resize images */
+.container img {
+    width: 100%;
+    height: auto;
+}
