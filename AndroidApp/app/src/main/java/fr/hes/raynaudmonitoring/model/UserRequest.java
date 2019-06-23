@@ -5,11 +5,13 @@ public class UserRequest {
     private String firstname;
     private String lastname;
     private String birthdate;
+    private boolean isActivated;
 
    public UserRequest(String firstname, String lastname, String birthdate){
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthdate = birthdate;
+        this.isActivated=false;
     }
 
     public String getFirstname() {
@@ -34,5 +36,9 @@ public class UserRequest {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public boolean isActivated(){
+       return isActivated;
     }
 }

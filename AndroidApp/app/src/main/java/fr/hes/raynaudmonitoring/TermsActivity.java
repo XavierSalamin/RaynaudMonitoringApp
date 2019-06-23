@@ -47,7 +47,7 @@ public class TermsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(agreed){
-                    Intent intent = new Intent(ctx, MainActivity.class);
+                    Intent intent = new Intent(ctx, LoginActivity.class);
 
                     //Intent intent = new Intent(ctx, LoginActivity.class);
                     startActivity(intent);

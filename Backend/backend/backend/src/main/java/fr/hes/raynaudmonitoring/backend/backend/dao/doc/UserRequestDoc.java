@@ -9,39 +9,40 @@ import com.couchbase.client.java.repository.annotation.Id;
 
 import lombok.Getter;
 import lombok.Setter;
+
 @Document
 @Getter
 @Setter
-public class UserRequestDoc implements Serializable{
-	
-	  private static final long serialVersionUID = 3072475211055416282L;
-	  protected static final String USER_KEY_PREFIX = "userRequest::";
+public class UserRequestDoc implements Serializable {
 
-	  @Id
-	  private String id;
+	private static final long serialVersionUID = 3072475211055416282L;
+	protected static final String USER_KEY_PREFIX = "userRequest::";
 
+	@Id
+	private String id;
 
-	  @Field
+	@Field
 	private String firstname;
-	  @Field
+	@Field
 	private String lastname;
-	  @Field
+	@Field
 	private String birthDate;
-	
-	
-	public UserRequestDoc(final String id, final String firstname,final String lastname,final String birthDate) {
-	    super();
-	    this.id = id;
+	@Field
+	private Boolean isActivated;
+
+	public UserRequestDoc(final String id, final String firstname, final String lastname, final String birthDate,
+			final Boolean isActivated) {
+		super();
+		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.birthDate = birthDate;
-		
+		this.isActivated = false;
+
 	}
 
-
-	  public static String getKeyFor(String id) {
-		    return  id;
-		  }
-
+	public static String getKeyFor(final String id) {
+		return id;
+	}
 
 }

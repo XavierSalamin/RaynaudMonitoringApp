@@ -46,7 +46,11 @@ public class UserRequestServiceImpl implements UserRequestService {
 
 	@Override
 	public List<UserRequestDoc> findAllUser() {
-		return userRequestRepo.findAllUserRequest();
+		// On retourne seulement les joueurs qui n'ont pas été activé
+
+		final List<UserRequestDoc> userList = userRequestRepo.findAllUserRequest();
+		return userList.stream().filter(user -> user != null).filter(user -> user.getIsActivated() == false)
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -117,5 +121,21 @@ public class UserRequestServiceImpl implements UserRequestService {
 			result = null;
 		}
 		return result;
+	}
+
+	// Get a userRequest and set is variable isActivated at true
+	@Override
+	public void activateUser(final String firstname) {
+		final Optional<UserRequestDoc> userObja = userRequestRepo.findByFirstname(firstname);
+
+		// On a besoin d'avoir l'id pour écraser correctement l'objet
+		final Optional<UserRequestDoc> userObj = userRequestRepo.findById(userObja.get().getId());
+		if (userObj.isPresent()) {
+			if (userObj.get().getIsActivated() != null)
+				userObj.get().setIsActivated(true);
+			logger.info("Activating user : " + firstname);
+		}
+
+		userRequestRepo.save(userObj.get());
 	}
 }

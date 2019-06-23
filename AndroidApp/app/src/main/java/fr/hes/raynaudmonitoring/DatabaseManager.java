@@ -52,7 +52,7 @@ public class DatabaseManager {
     private static Logger log = Logger.getLogger(String.valueOf(DatabaseManager.class));
 
     public static final String DB_NAME = "staging";
-    public static final String IP_CIBLE = "192.168.43.239:4984";
+    public static final String IP_CIBLE = "192.168.3.8:4984";
     public static final String USER_REQUEST_TYPE = "user_request";
 
 
@@ -465,6 +465,7 @@ public class DatabaseManager {
 
         doc.setString("lastname", userRequest.getLastname());
         doc.setString("birthDate", userRequest.getBirthdate());
+        doc.setBoolean("isActivated", userRequest.isActivated());
         doc.setString("type", USER_REQUEST_TYPE);
         addUserProfile(doc);
         database.save(doc);

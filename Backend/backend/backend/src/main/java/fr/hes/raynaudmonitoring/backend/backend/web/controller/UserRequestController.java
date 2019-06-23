@@ -1,6 +1,5 @@
 package fr.hes.raynaudmonitoring.backend.backend.web.controller;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -28,61 +27,65 @@ import fr.hes.raynaudmonitoring.backend.backend.service.UserRequestService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserRequestController {
-	
+
 	protected static final Logger logger = LoggerFactory.getLogger(UserRequestController.class);
-	
-	 @Autowired
-	 private UserRequestService userRequestService;
-	
-	  @GetMapping(value = "/{userId}")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public UserRequestDoc findById(@PathVariable String userId) {
-	    logger.info("Find user by id: {}", userId);
-	    return userRequestService.findById(userId);
-	  }
-	  
-	  @GetMapping(value = "/profile/{userId}")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public UserProfileDoc findProfileById(@PathVariable String userId) {
-	    logger.info("Find user by id: {}", userId);
-	    return userRequestService.findProfileById(userId);
-	  }
-	  
-		
-	  @GetMapping(value = "/find/{firstname}")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public UserRequestDoc findByFirstName(@PathVariable String firstname) {
-	    logger.info("Find user by id: {}", firstname);
-	    return userRequestService.findByFirstName(firstname);
-	  }
-	  
-	  
-		
-	  @PostMapping(value = "/add")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public UserProfileDoc  addUserProfile(@RequestBody @Valid final UserProfileJson jsonUserProfile) {
-	    logger.info("Add user profile");
-	    return userRequestService.addUserProfile(jsonUserProfile);
-	  }
 
-	  @GetMapping(value = "/find/all")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public List<UserRequestDoc> findAllUser() {
+	@Autowired
+	private UserRequestService userRequestService;
 
-	    return userRequestService.findAllUser();
-	  }
-	  
-	  
-	  @GetMapping(value = "/profile/all")
-	  @ResponseStatus(HttpStatus.OK)
-	  @ResponseBody
-	  public List<UserProfileDoc> findAllProfile() {
+	@GetMapping(value = "/{userId}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserRequestDoc findById(@PathVariable final String userId) {
+		logger.info("Find user by id: {}", userId);
+		return userRequestService.findById(userId);
+	}
 
-	    return userRequestService.findAllProfile();
-	  }
+	@GetMapping(value = "/profile/{userId}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserProfileDoc findProfileById(@PathVariable final String userId) {
+		logger.info("Find user by id: {}", userId);
+		return userRequestService.findProfileById(userId);
+	}
+
+	@GetMapping(value = "/find/{firstname}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserRequestDoc findByFirstName(@PathVariable final String firstname) {
+		logger.info("Find user by id: {}", firstname);
+		return userRequestService.findByFirstName(firstname);
+	}
+
+	@GetMapping(value = "/activate/{firstname}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void addUserProfile(@PathVariable final String firstname) {
+
+		userRequestService.activateUser(firstname);
+	}
+
+	@PostMapping(value = "/add")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserProfileDoc addUserProfile(@RequestBody @Valid final UserProfileJson jsonUserProfile) {
+		logger.info("Add user profile");
+		return userRequestService.addUserProfile(jsonUserProfile);
+	}
+
+	@GetMapping(value = "/find/all")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<UserRequestDoc> findAllUser() {
+
+		return userRequestService.findAllUser();
+	}
+
+	@GetMapping(value = "/profile/all")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<UserProfileDoc> findAllProfile() {
+
+		return userRequestService.findAllProfile();
+	}
 }
