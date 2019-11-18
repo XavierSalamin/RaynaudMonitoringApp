@@ -1,0 +1,64 @@
+<nb-card>
+  <nb-card-header>
+    Crises du patient numéro {{userParams.patientNumber}}
+  </nb-card-header>
+
+  <nb-card-body>
+    <!--
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>-->
+
+    <div class="form-group row">
+
+      <div class="col-sm-12">
+
+        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Heure du début</th>
+            <th>Heure de fin</th>
+            <th>Douleur</th>
+            <th>Image début</th>
+            <th>Image fin</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let crisis of crisisArray; let i = index">
+
+
+            <td>{{crisis.type}}  </td>
+            <td>{{crisis.day}}/{{crisisMonth}}/{{crisis.year}}  </td>
+            <td>{{crisis.startText}} </td>
+            <td>{{crisis.endText}} </td>
+            <td>{{crisis.pain}} </td>
+            <td *ngIf="crisisStartImage[i] && crisisStartImage[i].length">
+              <div class="container">
+              <img   [src]=" crisisStartImage[i]">
+              </div>
+            </td>
+            <td  *ngIf="crisisEndImage[i] && crisisEndImage[i].length">
+              <div class="container">
+              <img   [src]=" crisisEndImage[i]">
+              </div>
+            </td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </nb-card-body>
+  <button (click)=exportData(userParams.patientNumber) type="button" class="btn btn-primary btn-sm crisisButton"><i
+    class="fa fa-arrow-alt-down"></i>&nbsp;Exporter les données
+  </button>
+
+  <button type="button" class="btn btn-primary btn-sm crisisButton"><i class="fa fa-arrow-alt-down"></i>&nbsp;Exporter
+    les photos
+  </button>
+</nb-card>
+

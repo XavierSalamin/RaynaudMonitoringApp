@@ -1,0 +1,2 @@
+cd C:\Users\Xavier\Documents\GitHub\Raynaud2\RaynaudProject\Backend\backend\backend
+java -jar target/backend-0.0.1-SNAPSHOT.jar

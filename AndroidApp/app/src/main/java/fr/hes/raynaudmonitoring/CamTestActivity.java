@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 
 import android.os.Environment;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,6 +49,7 @@ public class CamTestActivity extends Activity {
     Context ctx;
     boolean isStart;
     boolean isUpdate;
+
     String id;
     String imageFileName;
     static Date dateSelected;
@@ -68,6 +70,7 @@ public class CamTestActivity extends Activity {
         id = myIntent.getStringExtra("id");
 
 
+
         dateSelected = PicturesFragment.dateSelected;
 
 
@@ -79,12 +82,10 @@ public class CamTestActivity extends Activity {
 
 
 
-
         buttonClick = findViewById(R.id.btnCapture);
 
         buttonClick.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                preview.mCamera.takePicture(shutterCallback, rawCallback, jpegCallback);
                 camera.takePicture(shutterCallback, rawCallback, jpegCallback);
             }
         });
@@ -186,6 +187,7 @@ public class CamTestActivity extends Activity {
 
                 refreshGallery(outFile);
 
+                DatabaseManager.addBlobPicture(imageFileName, imageFileName);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -231,21 +233,18 @@ public class CamTestActivity extends Activity {
      * Return true if the date passed as parameters is the date from Yesterday
      * @return a File with a storage directory and a name based on a timestamp
      */
-    private File createImageFile() throws IOException {
+    private File createImageFile() {
         String timeStamp = new SimpleDateFormat("dMMMyyyy_mmhhSS").format(new Date());
         imageFileName = "pictures_"+timeStamp;
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = new File(storageDir, imageFileName+".jpg");
-
-        return image;
-
-
-
-
-
-
-
-
+        try {
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            File image = new File(storageDir, imageFileName + ".jpg");
+            return image;
+        }
+        catch(Exception e){
+            Toast.makeText(ctx, "Une erreur c'est produite : "+e, Toast.LENGTH_SHORT).show();
+            return new File(imageFileName);
+        }
 
     }
     /**

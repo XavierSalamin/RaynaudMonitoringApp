@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>
+    Utilisateurs en attente
+  </nb-card-header>
+
+  <nb-card-body>
+  	<!--
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>-->
+  
+
+		<table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+		<thead>
+		<tr>
+		<th>Nom</th>
+		<th>Prénom</th>
+		<th>Date de naissance</th>
+		<th>Actions</th>
+
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let user of users">
+
+
+		<td>{{user.lastname}}  </td>
+		<td>{{user.firstname}} </td>
+		<td>{{user.birthDate}} </td>
+		<td> 
+
+	<a   [routerLink]="['/pages/new', user]"  routerLinkActive="active">	<button (click)=skurt(user) type="button" class="btn btn-success btn-sm"><i class="fa fa-check"></i>&nbsp; Valider</button></a>
+		<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i>&nbsp;Refuser</button>
+		</td>
+
+		</tr>
+		</tbody>
+		</table>
+
+
+  </nb-card-body>
+</nb-card>

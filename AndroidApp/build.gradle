@@ -12,9 +12,9 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         //noinspection GradlePluginVersion
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong

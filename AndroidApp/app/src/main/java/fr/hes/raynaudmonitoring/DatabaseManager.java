@@ -1,8 +1,16 @@
 package fr.hes.raynaudmonitoring;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.os.Environment;
+import android.widget.Toast;
 
+import com.couchbase.lite.BasicAuthenticator;
+import com.couchbase.lite.Blob;
+import com.couchbase.lite.CouchbaseLite;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
 import com.couchbase.lite.Database;
@@ -15,6 +23,8 @@ import com.couchbase.lite.MutableDocument;
 import com.couchbase.lite.Query;
 import com.couchbase.lite.QueryBuilder;
 import com.couchbase.lite.Replicator;
+import com.couchbase.lite.ReplicatorChange;
+import com.couchbase.lite.ReplicatorChangeListener;
 import com.couchbase.lite.ReplicatorConfiguration;
 import com.couchbase.lite.Result;
 import com.couchbase.lite.ResultSet;
@@ -22,13 +32,25 @@ import com.couchbase.lite.SelectResult;
 import com.couchbase.lite.URLEndpoint;
 import com.couchbase.lite.internal.support.Log;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import fr.hes.raynaudmonitoring.model.UserRequest;
 
 import static java.time.LocalDate.now;
 
@@ -38,25 +60,45 @@ import static java.time.LocalDate.now;
  */
 public class DatabaseManager {
 
+
+    private static Logger log = Logger.getLogger(String.valueOf(DatabaseManager.class));
+
     public static final String DB_NAME = "staging";
-    public static final String IP_CIBLE = "192.168.43.239:4984";
-    public Context context;
+   public static final String IP_CIBLE = "193.54.74.69:4984";
+   // public static final String IP_CIBLE = "192.168.1.9:4984";
+    public static final String USER_REQUEST_TYPE = "user_request";
+
+
+    public  static  String userProfile ="";
+    private static  Context context;
     public static Database database; //Singleton
     public static Replicator replicator;
 
 
 
-    public static MutableDocument mutableDoc;
-
     public DatabaseManager(Context context) throws CouchbaseLiteException {
         this.context = context;
         final String TAG = "DATABASE";
         // Get the database (and create it if it doesn’t exist).
-        DatabaseConfiguration config = new DatabaseConfiguration(context);
+        CouchbaseLite.init(context);
+        DatabaseConfiguration config = new DatabaseConfiguration();
         database = new Database(DB_NAME, config);
 
 
+    }
 
+    public static void startUserReplication() {
+        URI uri = null;
+        try {
+            uri = new URI("ws://"+ IP_CIBLE +"/"+DB_NAME);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        Endpoint endpoint = new URLEndpoint(uri);
+        ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
+        config.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PUSH);
+        replicator = new Replicator(config);
+        replicator.start();
     }
 
 
@@ -74,9 +116,35 @@ public class DatabaseManager {
         replicator.start();
     }
 
+
+
+    public static void pullData() {
+        URI uri = null;
+        try {
+            uri = new URI("ws://"+ IP_CIBLE +"/"+DB_NAME);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        Endpoint endpoint = new URLEndpoint(uri);
+        ReplicatorConfiguration config = new ReplicatorConfiguration(database, endpoint);
+        config.setReplicatorType(ReplicatorConfiguration.ReplicatorType.PULL);
+        // Add authentication.
+        replicator = new Replicator(config);
+
+
+
+
+        replicator.start();
+
+
+    }
+
     public static Database getDatabase() {
         return database;
     }
+
+
 
     /**
      * Delete Treatment from the Database
@@ -117,6 +185,81 @@ public class DatabaseManager {
     }
 
 
+    public static void setUserProfile(String id) throws CouchbaseLiteException {
+        MutableDocument doc = new MutableDocument(id+"_profile");
+        doc.setString("type", "user_id");
+        doc.setString("userId", id);
+        userProfile=id;
+        database.save(doc);
+    }
+
+    public static String getUserProfile() throws CouchbaseLiteException {
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("user_id")));
+
+        ResultSet rs = query.execute();
+        String resultId = null;
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+            resultId = all.getString("userId");
+        }
+
+        return resultId;
+    }
+
+    public static void addUserProfile(MutableDocument doc){
+        doc.setString("user_profile", userProfile);
+    }
+
+    /** Permet de gérer les login /Logout **/
+    public static void login (boolean isLogin) throws CouchbaseLiteException {
+        if(userProfile!=null){
+
+
+        String id = userProfile+"session";
+        Document oldDoc = database.getDocument(id);
+        if(oldDoc!=null){
+         database.delete(oldDoc);
+        }
+
+
+
+        else{
+            MutableDocument doc = new MutableDocument(id);
+            doc.setString("type", "session");
+            doc.setBoolean("login", isLogin);
+
+            database.save(doc);
+        }
+        }
+
+    }
+
+
+
+
+
+    public static boolean isLogin() throws CouchbaseLiteException{
+
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("session"))
+         );
+
+        boolean isLogin = false;
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("staging");
+            isLogin = all.getBoolean("login");
+        }
+    return  isLogin;
+
+    }
+
+
 
     public static void addTreatment (Treatment t) throws CouchbaseLiteException {
         String id = getTreatmentId(t);
@@ -129,6 +272,7 @@ public class DatabaseManager {
         doc.setString("description", t.getDescription());
         doc.setDate("date", t.getDate());
         doc.setBoolean("sideEffects", t.isSideEffects());
+        addUserProfile(doc);
 
 
 
@@ -152,6 +296,9 @@ public class DatabaseManager {
         doc.setInt("day", cal.get(Calendar.DAY_OF_MONTH));
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
+        addUserProfile(doc);
+
+
 
         database.save(doc);
     }
@@ -166,6 +313,9 @@ public class DatabaseManager {
         doc.setInt("minute",r.getMinute());
         doc.setString("title", r.getTitle());
         doc.setBoolean("isChecked", r.isChecked());
+        addUserProfile(doc);
+
+
 
 
         database.save(doc);
@@ -180,16 +330,11 @@ public class DatabaseManager {
         doc.setString("patient", numberPatient);
 
         doc.setString("phase", numberPhase);
-
-
+        addUserProfile(doc);
         database.save(doc);
 
 
     }
-
-
-
-
 
 
 
@@ -208,7 +353,7 @@ public class DatabaseManager {
         doc.setInt("day", cal.get(Calendar.DAY_OF_MONTH));
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
-
+        addUserProfile(doc);
         database.save(doc);
     }
 
@@ -244,7 +389,7 @@ public class DatabaseManager {
         doc.setInt("month", cal.get(Calendar.MONTH));
         doc.setInt("year", cal.get(Calendar.YEAR));
         doc.setInt("pain", crisis.getPain());
-
+        addUserProfile(doc);
         database.save(doc);
     }
 
@@ -268,6 +413,36 @@ public class DatabaseManager {
 
         Document doc = database.getDocument(id);
         database.delete(doc);
+
+    }
+
+    public static boolean checkLogin(String firstname, String lastname) throws CouchbaseLiteException {
+
+        Query query = QueryBuilder
+                .select(SelectResult.all())
+                .from(DataSource.database(DatabaseManager.getDatabase()))
+                .where(Expression.property("type").equalTo(Expression.string("user_profile"))
+                        .and(Expression.property("firstname").equalTo(Expression.string(firstname)))
+                        .and(Expression.property("lastname").equalTo(Expression.string(lastname))));
+
+        ResultSet rs = query.execute();
+        for (Result result : rs) {
+            Dictionary all = result.getDictionary("login");
+
+            if(all.count()>=1) {
+                log.log(Level.INFO, "Login validated");
+                return true;
+            }
+
+        }
+
+
+        log.log(Level.INFO, "Login refused");
+        return false;
+
+
+
+
 
     }
 
@@ -381,4 +556,68 @@ public class DatabaseManager {
     }
 
 
+    public static void addUserRequest (UserRequest userRequest) throws CouchbaseLiteException {
+
+        //We add the current date to the database with the names of the images
+
+        String id = userRequest.getLastname()+userRequest.getFirstname();
+
+
+        MutableDocument doc = new MutableDocument(id);
+        doc.setString("firstname", userRequest.getFirstname());
+
+        doc.setString("lastname", userRequest.getLastname());
+        doc.setString("birthDate", userRequest.getBirthdate());
+        doc.setBoolean("isActivated", userRequest.isActivated());
+        doc.setString("type", USER_REQUEST_TYPE);
+        addUserProfile(doc);
+        database.save(doc);
+    }
+
+
+    public static void addBlobPicture(String fileName, String key){
+
+
+
+        if(fileName!=null) {
+
+            try {
+                String path = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + fileName+".jpg";
+                File imgFile = new File(path);
+                String id = getUserProfile();
+                Document oldDoc = database.getDocument(id + "_pics");
+                if(oldDoc!=null){
+                    InputStream is = new FileInputStream(imgFile);
+
+
+
+
+                    MutableDocument mutableDoc = database.getDocument(oldDoc.getId()).toMutable();
+                    mutableDoc.setBlob(key, new Blob("image/jpg", IOUtils.toByteArray(is)));
+                    database.save(mutableDoc);
+
+                }
+                else{
+                    MutableDocument doc = new MutableDocument(id+"_pics");
+                    InputStream is = new FileInputStream(imgFile);
+
+
+                    doc.setBlob(key, new Blob("image/jpg", IOUtils.toByteArray(is)));
+                    database.save(doc);
+                }
+
+
+
+            } catch (IOException | CouchbaseLiteException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+    }
+
+    public static  Context getContext(){
+        return context;
+    }
 }

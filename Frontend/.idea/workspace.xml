@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e1d2e799-6431-48ea-b865-47fe9c5e9ef6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../AndroidApp/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/CamTestActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/CamTestActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/DateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/DateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/MainFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/PicturesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/PicturesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/PicturesPreviewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/PicturesPreviewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHiderBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHiderBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHiderHoneycomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/java/fr/hes/raynaudmonitoring/util/SystemUiHiderHoneycomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_main_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_main_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_camera.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_gallery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_gallery.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_manage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_manage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_send.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_send.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_share.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_share.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_reminders_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_reminders_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_settings_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_settings_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_thermo_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable-v21/ic_thermo_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_action_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_action_info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_a_photo_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_a_photo_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_white_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_add_white_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_arrow_back_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_arrow_back_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_arrow_back_white_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_arrow_back_white_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_check_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_check_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_close_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_close_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_delete_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_delete_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_delete_white_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_delete_white_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_description_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_description_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_edit_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_edit_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_home_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_home_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_keyboard_arrow_left_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_keyboard_arrow_left_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_keyboard_arrow_right_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_keyboard_arrow_right_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_location_searching_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_location_searching_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_photo_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/ic_photo_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/side_nav_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/drawable/side_nav_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/layout/activity_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/layout/activity_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidApp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidApp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/BackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/configuration/AppConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/configuration/CouchbaseConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/configuration/CouchbaseSetting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/dao/CrisisRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/dao/doc/CrisisDoc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/model/Crisis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/service/CrisisService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/service/CrisisServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/java/fr/hes/raynaudmonitoring/backend/backend/web/controller/CrisisController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/backend/backend/src/test/java/fr/hes/raynaudmonitoring/backend/backend/BackendApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1TLx54tL7lVZsp2dndUcKnpPYis" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend_final/ngx-admin" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e1d2e799-6431-48ea-b865-47fe9c5e9ef6" name="Default Changelist" comment="" />
+      <created>1573252990309</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573252990309</updated>
+      <workItem from="1573252991923" duration="18000" />
+    </task>
+    <servers />
+  </component>
+</project>

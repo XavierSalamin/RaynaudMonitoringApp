@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.couchbase.lite.BasicAuthenticator;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
+import com.couchbase.lite.Database;
 import com.couchbase.lite.Dictionary;
 import com.couchbase.lite.Endpoint;
 import com.couchbase.lite.Expression;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
         //End Notification
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
@@ -105,20 +107,12 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-//Singleton
-        try {
-            DatabaseManager database = new DatabaseManager(getApplicationContext());
-        } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
-        }
-        try {
 
-            startSync();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         try {
+
+
             retrieveUserData();
         } catch (CouchbaseLiteException e) {
             e.printStackTrace();

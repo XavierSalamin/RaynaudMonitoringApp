@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.DataSource;
@@ -356,6 +357,7 @@ public class PicturesFragment extends Fragment {
                startText =  formattedDate;
                startTextView.setText(formattedDate);
 
+
            }
 
             if(data.getStringExtra("endName")!=null){
@@ -497,14 +499,22 @@ public class PicturesFragment extends Fragment {
                     MainFragment.updateCrisis(crisis, id);
                     getActivity().setResult(ADD_PICTURES_CRISIS_REQUEST);
                     getActivity().finish();
+
                     return true;
                 }
                 else{
                     Crisis crisis = new Crisis(startFileName, endFileName, dateSelected, startText, endText, pain, thermStartName, thermEndName);
                     crisis.setNotes(false);
-                    MainFragment.addCrisis(crisis);
+                    //MainFragment.addCrisis(crisis);
                     getActivity().setResult(ADD_PICTURES_CRISIS_REQUEST);
                     getActivity().finish();
+                    if(startText == null && endText == null ){
+                        Toast.makeText(getContext(), "La crise n'a pas été enregistré car elle ne contenait aucune information !", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                    else{
+                        MainFragment.addCrisis(crisis);
+                    }
                     return true;
                 }
 

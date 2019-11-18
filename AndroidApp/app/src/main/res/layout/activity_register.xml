@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/gradient_login"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical">
+            <!-- Logo Section -->
+            <ImageView
+                android:layout_marginTop="24dp"
+                android:layout_width="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="120dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/logo_launch" />
+
+            <!--Last Name Section -->
+
+
+            <!--Username Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_marginTop="28dp"
+
+                    android:layout_height="18dp"
+                    android:background="@drawable/ic_person_black_24dp"/>
+                <EditText
+                    android:id="@+id/lastname_edittext"
+                    style="@android:style/Widget.AutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="26dp"
+                    android:hint="Votre nom"
+                    android:singleLine="false" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/colorBackground"
+
+                ></LinearLayout>
+
+            <!--Username Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_marginTop="28dp"
+
+                    android:layout_height="18dp"
+                    android:background="@drawable/ic_person_black_24dp"/>
+                <EditText
+                    android:id="@+id/firstname_edittext"
+                    style="@android:style/Widget.AutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dp"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="26dp"
+                    android:hint="Votre prénom"
+                    android:singleLine="false" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/colorBackground"
+
+                ></LinearLayout>
+            <!--First Name Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_marginTop="28dp"
+
+                    android:layout_height="18dp"
+                    android:background="@drawable/ic_date_range_black_24dp"/>
+                <EditText
+                    android:id="@+id/birthdate_edittext"
+                    style="@android:style/Widget.AutoCompleteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="16dp"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="26dp"
+                    android:hint="Date de naissance"
+                    android:singleLine="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/colorBackground"
+
+                ></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/terms_button"
+                    android:layout_margin="12dp"
+                    android:textColor="@color/colorWhite"
+                    android:text="Valider les informations"
+                    android:background="@color/colorPrimary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

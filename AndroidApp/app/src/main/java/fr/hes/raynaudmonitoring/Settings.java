@@ -1,6 +1,7 @@
 package fr.hes.raynaudmonitoring;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -81,12 +82,13 @@ public class Settings extends Fragment {
     ArrayList<String> newRcsList;
     ArrayList<String> dateRcs;
 
-    Button button;
+    Button button_logout;
     Button button_push;
+    Button deleteButton;
 
-    EditText numberEdit;
-    EditText phaseEdit;
-    EditText nameEdit;
+    TextView numberEdit;
+    TextView phaseEdit;
+    TextView nameEdit;
 
     static String numberPatient;
     static String phase;
@@ -116,7 +118,7 @@ public class Settings extends Fragment {
         // Inflate the layout for this fragment
 
         final View rootView = inflater.inflate(R.layout.activity_settings, container, false);
-        button = rootView.findViewById(R.id.pdf_button);
+        button_logout = rootView.findViewById(R.id.logout_button);
         button_push = rootView.findViewById(R.id.push_button);
         nameEdit = rootView.findViewById(R.id.edit_name_pdf);
         phaseEdit = rootView.findViewById(R.id.edit_phase_treatment);
@@ -134,65 +136,6 @@ public class Settings extends Fragment {
         View headerView = nv.getHeaderView(0);
         final TextView navNumberPatient =  headerView.findViewById(R.id.number_patient);
         final TextView navNumberPhase =  headerView.findViewById(R.id.number_phase);
-        nameEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                namePdf = s.toString();
-
-
-            }
-        });
-
-        phaseEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                phase = s.toString();
-                navNumberPhase.setText("Phase de traitement "+phase);
-                try {
-                    DatabaseManager.addUserData(numberPatient, phase);
-                } catch (CouchbaseLiteException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-
-
-
-        numberEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                numberPatient = s.toString();
-                navNumberPatient.setText("Patient numéro "+numberPatient);
-                try {
-                    DatabaseManager.addUserData(numberPatient, phase);
-                } catch (CouchbaseLiteException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-
 
 
 
@@ -235,11 +178,11 @@ public class Settings extends Fragment {
             e.printStackTrace();
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    generatePDF();
+                    logout();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -251,8 +194,11 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View v) {
                 DatabaseManager.startReplication();
+
+                Toast.makeText(getContext(), "Data pushed to the server", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         try {
             generateJson();
@@ -263,6 +209,17 @@ public class Settings extends Fragment {
 
         return rootView;
 
+    }
+
+    private void logout(){
+        try {
+            DatabaseManager.login(false);
+
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TermsActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent = "true" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="@color/colorDark"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:scrollbars="vertical"
+            android:layout_margin="16dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="FORMULAIRE D’INFORMATION ET DE NON OPPOSITION"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="@color/colorDark"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:scrollbars="vertical"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:textSize="14dp"
+            android:text="Développement d’une application pour le suivi et l’évaluation du phénomène de Raynaud"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:textSize="12dp"
+            android:text="Médecin investigateur \nresponsable de l’étude :  "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="\n \t \t Dr Roustit Matthieu"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:textSize="12dp"
+                android:text="Coordonnées  :  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+
+                android:text="Centre d’Investigation Clinique, \n
+                INSERM CIC 1406, \n
+                CHU Grenoble Alpes, \n
+                Tel : 04 76 76 92 60, \n
+                Email : MRoustit@chu-grenoble.fr "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:textSize="12dp"
+                android:text="Promoteur  :  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:text="\t CHU Grenoble Alpes"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:textSize="12dp"
+                android:text="Coordonnées  :  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:text="CHU Grenoble Alpes"/>
+        </LinearLayout>
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+        android:textSize="14dp"
+        android:text="Madame, Monsieur, \n \nLe Dr Roustit Matthieu vous propose de participer à une recherche impliquant la personne humaine non interventionnelle. Cette recherche est organisée par le CHU Grenoble-Alpes.\n\nVous êtes libre de participer ou non à cette recherche. Votre refus n’a pas à être justifié et ne modifiera en rien votre prise en charge ou votre relation avec le médecin. Vous avez également le droit à tout moment de vous opposer à l’utilisation de vos données de santé sans encourir aucun préjudice de ce fait.\n\nCette recherche étant non interventionnelle, votre prise en charge médicale sera celle habituelle pour votre pathologie ; des données supplémentaires pourront être  recueillies afin de mieux comprendre votre maladie. Cette recherche n’engendrera aucun frais supplémentaires vous concernant. Vous ne percevrez aucune indemnité.\n\n "
+        />
+
+    <TextView
+    android:layout_width="match_parent"
+    android:textStyle="bold"
+    android:text="Descriptif de l’étude :"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:layout_marginLeft="16dp"
+    android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Cette recherche a pour objectif de valider l’utilisation d’une application pour téléphone mobile permettant d’analyser la sévérité du phénomène de Raynaud à partir de photographies de la main. Cette application permettra notamment d’évaluer le phénomène de Raynaud dans le cadre d’essais cliniques visant à tester de nouveaux médicaments. En plus des photographies, une caméra thermique qui se branche directement sur le téléphone vous sera prêtée dans le but de déterminer la température cutanée de votre main. Cette caméra thermique est indolore, elle mesure la température à distance de la peau."/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Durée de l’étude :"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Vous serez inclus dans l’étude sur une période maximale d’un an, mais vous pourrez  arrêter d’utiliser l’application quand vous le souhaitez. La participation à cette étude ne vous empêchera pas de participer à une autre étude clinique durant cette période. "
+/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Bénéfices, contraintes et risques : "
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Cette recherche non interventionnelle ne vous procurera pas de bénéfice direct du fait de votre participation. Mais elle permettra aux chercheurs de valider de nouveaux outils pour mieux évaluer le phénomène de Raynaud. De même, l’étude se limite à l’utilisation d’une application mobile et n’entrainera pas de risque supplémentaire. Votre participation à cette recherche n’entrainera aucune modification de votre prise en charge médicale.\n"
+/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Protection des personnes : "
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Cette recherche impliquant la personne humaine a reçu l’avis favorable d’un Comité de Protection des Personnes XXX le XXX, et a été transmise pour information à l’Agence Nationale de Sécurité du Médicament et des produits de santé (ANSM). "
+/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Confidentialité des données vous concernant : "
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Dans le cadre de cette recherche, un traitement de vos données personnelles va être mis en œuvre pour permettre d’analyser les résultats de la recherche au regard de l’objectif de cette dernière.\n
+            \nLes données que nous prévoyons de collecter sont les suivantes :\n\n\t- L’heure et le nombre de crises par jour, la durée de ces crises, et les photographies associées\n
+\t- Les images thermiques (température de la peau) lors de ces crises.\n
+\t- Enfin nous recueillerons la douleur et la gêne occasionnées par le phénomène de Raynaud.\n\n
+Ces données ne permettront pas de remonter à votre identité. A cette fin, les données médicales vous concernant seront transmises à la personne responsable du traitement de la recherche ou aux personnes ou sociétés agissant pour son compte, en France. Ce traitement est mis en œuvre dans le cadre de l’article 9 du règlement UE 2016/679.\n\t\t- Ces données seront identifiées par un numéro de code et vos initiales.\n\t\t- Ces données pourront également, dans des conditions assurant leur confidentialité, être transmises aux autorités de santé françaises ou étrangères et à d’autres entités du CHU Grenoble Alpes ou à des tiers, sous une forme qui ne permettra pas votre identification directe ou indirecte.\n\t\t- Ces données pourront également être utilisées pour des fins scientifiques dans le cadre de recherches conduites sur le phénomène de Raynaud ; en cas de retrait de consentement et sauf précision de votre part, les données collectées jusqu’à cette date pourront être utilisées.\n\t\t- Les données sont stockées sur un serveur sécurisé du CHU Grenoble Alpes. Le promoteur procédera à la collecte de ces données et à leur traitement. Dans le cas où le traitement des données serait délégué à une autre entité, les précautions nécessaires au maintien de votre anonymat seront prises et un contrat sera établi. Ces données seront archivées sur un serveur sécurisé du CHU Grenoble Alpes en fin d’étude.\n" />
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Vos droits : "
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Conformément aux dispositions de loi relative à l’informatique aux fichiers et aux libertés, le promoteur a procédé à une déclaration de conformité à la méthodologie de référence MR-003 auprès de la Commission Nationale de l’Informatique et des Libertés (CNIL).\nVous disposez d’un droit d’accès et de rectification.\nVous disposez également d’un droit d’opposition à la transmission des données couvertes par le secret professionnel susceptibles d’être utilisées dans le cadre de cette recherche et d’être traitées.\nVous disposez d’un droit à l’effacement des données et à l’oubli.\nVous disposez d’un droit à la limitation du traitement de vos données.\nVous disposez d’un droit de réclamation à une autorité de contrôle (CNIL).\n
+Vous pouvez également accéder directement ou par l’intermédiaire d’un médecin de votre choix à l’ensemble de vos données médicales en application des dispositions de l’article L 1111-7 du Code de la Santé Publique. Ces droits s’exercent auprès du médecin qui vous suit dans le cadre de la recherche et qui connaît votre identité.\n\nA l’issue de la recherche, vous pourrez être informé(e) de ses résultats globaux en contactant le médecin investigateur. "/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="Vos contacts : "
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dp"
+            android:text="Pour exercer vos droits, ou pour toute question à ce sujet :
+Vous pouvez contacter le délégué à la protection des données du CHU Grenoble Alpes par mail (protection-donnees@chu-grenoble.fr) ou par téléphone au 04.76.76.75.75.
+Une demande peut aussi être envoyée par courrier à ce délégué à la protection des données ou à la direction générale du CHU Grenoble Alpes à l’adresse mentionnée ci-dessous.
+Si vous avez des questions sur l’étude, vous pouvez contacter le Dr Roustit Matthieu Nous vous remercions d’avoir pris le temps de lire cette lettre d’information. "/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="30dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="40dp"
+                android:id="@+id/terms_checkbox"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="En cochant cette case, vous reconnaissez avoir pris connaissance du formulaire d’information et acceptez de participer à cette étude. "
+                android:layout_height="wrap_content"
+                android:textSize="14dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+            android:layout_marginBottom="35dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="150dp"
+        android:background="@color/colorBackground"
+        android:layout_height="60dp"
+        android:id="@+id/decline_button"
+        android:text="Annuler"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/agree_button"
+        android:background="@color/colorPrimary"
+        android:text="Continuer"/>
+    </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

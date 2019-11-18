@@ -326,7 +326,7 @@
                         android:layout_marginTop="12dp"
                         android:clickable="false"
 
-                        android:text="A quel degré estimez-vous aujourd'hui la douleur ?"
+                        android:text="A quel degré estimez-vous la douleur pour cette crise ?"
                         android:textColor="@color/colorTextGray"
                         android:textSize="12dp" />
 

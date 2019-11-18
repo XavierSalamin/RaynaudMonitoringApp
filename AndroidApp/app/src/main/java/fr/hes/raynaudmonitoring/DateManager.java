@@ -111,22 +111,25 @@ public class DateManager extends DialogFragment {
     public static void setTextViewFormattedDate(Date date, TextView textView){
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        if(calendar != null && date!=null)  {
+            calendar.setTime(date);
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMM yyyy");
-        String formattedDate = sdf.format(calendar.getTime());
-        if(DateManager.isYesterday(date)){
-            textView.setText(R.string.yesterday);
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMM yyyy");
+            String formattedDate = sdf.format(calendar.getTime());
+            if(DateManager.isYesterday(date)){
+                textView.setText(R.string.yesterday);
+            }
+            else if(DateManager.isToday(date)){
+                textView.setText(R.string.today);
+            }
+            else if(DateManager.isTomorrow(date)){
+                textView.setText(R.string.tomorrow);
+            }
+            else{
+                textView.setText(formattedDate);
+            }
         }
-        else if(DateManager.isToday(date)){
-            textView.setText(R.string.today);
-        }
-        else if(DateManager.isTomorrow(date)){
-            textView.setText(R.string.tomorrow);
-        }
-        else{
-            textView.setText(formattedDate);
-        }
+
 
     }
 

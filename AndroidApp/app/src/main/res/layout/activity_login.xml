@@ -4,48 +4,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@drawable/gradient_login"
     tools:context=".LoginActivity">
 
-    <RelativeLayout
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="30dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical">
+        <!-- Logo Section -->
+        <ImageView
+            android:layout_marginTop="24dp"
+        android:layout_width="160dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="160dp"
+            android:layout_marginBottom="40dp"
+        android:background="@drawable/logo_launch" />
 
+        <!--Nom Section -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="70dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true">
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_marginTop="28dp"
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="@drawable/ic_delete_white_24dp" />
-
-                    <EditText
-                        android:layout_width="200dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="12dp"
-                        android:gravity="center_vertical"
-                        android:hint="Numéro de client" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
+                android:layout_height="18dp"
+                android:background="@drawable/ic_lock_outline_black_24dp"/>
+            <EditText
+                android:id="@+id/password_edittext"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="26dp"
+                android:hint="Nom"
+                android:singleLine="false" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/colorBackground"
+
+            ></LinearLayout>
+
+
+
+        <!--Prenom Section -->
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="70dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            <ImageView
+            android:layout_width="18dp"
+            android:layout_marginTop="28dp"
+
+            android:layout_height="18dp"
+            android:background="@drawable/ic_person_black_24dp"/>
+            <EditText
+            android:id="@+id/username_edittext"
+            style="@android:style/Widget.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="26dp"
+            android:hint="Prénom"
+            android:singleLine="false" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/colorBackground"
+
+            ></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginLeft="70dp"
+            android:layout_height="50dp"
+            android:layout_margin="12dp"
+            android:id="@+id/login_link_button"
+            android:text="Login"
+            android:background="@color/colorPrimary"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_marginLeft="70dp"
+                android:layout_height="50dp"
+                android:layout_margin="12dp"
+                android:id="@+id/registry_link_button"
+                android:text="Créer un compte"
+                android:background="@color/colorAccent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

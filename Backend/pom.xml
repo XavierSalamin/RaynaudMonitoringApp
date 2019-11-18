@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>fr.hes.raynaudmonitoring.backend</groupId>
+	<artifactId>backend</artifactId>
+	<version>0.0.9</version>
+	<packaging>jar</packaging>
+
+	<name>backend</name>
+	<description>Raynaud Data Monitoring Backend</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-couchbase</artifactId>
+		</dependency>
+
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.6</version>
+</dependency>
+		
+		
+				<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>4.0.1</version>
+		</dependency>
+				
+		
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.4</version>
+    <scope>provided</scope>
+</dependency>
+		
+	</dependencies>
+    <build>
+     <plugins>
+      <plugin>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      
+      
+      <!--  Compiler avec Angular -->
+
+	<plugin> 
+		<artifactId>maven-resources-plugin</artifactId>     
+		<executions>  
+			<execution>   
+			<id>copy-resources</id>    
+			<phase>validate</phase> 
+			<goals><goal>copy-resources</goal></goals>             
+			<configuration>                                 
+				<outputDirectory>${build.directory}/classes/static/</outputDirectory >      
+				<resources>
+					<resource>
+					<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+					<directory>static</directory>
+					<targetPath>static</targetPath>
+					</resource>
+				</resources> 
+			</configuration>        
+			</execution>   
+		</executions> 
+	</plugin>
+
+      
+</plugins>
+    </build>
+
+</project>

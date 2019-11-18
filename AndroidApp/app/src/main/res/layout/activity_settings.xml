@@ -59,7 +59,7 @@
                         android:background="@color/colorWhite"
                         android:orientation="horizontal">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/edit_number_client"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                         android:background="@color/colorWhite"
                         android:orientation="horizontal">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/edit_phase_treatment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
                         android:background="@color/colorWhite"
                         android:orientation="horizontal">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/edit_name_pdf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -183,13 +183,13 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/pdf_button"
+                android:id="@+id/logout_button"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 android:elevation="17dp"
-                android:text="Générer un rapport" />
+                android:text="Se déconnecter" />
 
             <Button
                 android:id="@+id/push_button"
@@ -198,7 +198,10 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 android:elevation="17dp"
-                android:text="PUSH data" />
+                android:text="Synchroniser les données" />
+
+
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
